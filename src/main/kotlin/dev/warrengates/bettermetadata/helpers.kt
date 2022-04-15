@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2022. Warren Gates
+ * All rights reserved.
+ */
+
 package dev.warrengates.bettermetadata
 
 import java.sql.DatabaseMetaData
