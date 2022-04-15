@@ -10,7 +10,7 @@ import kotlin.reflect.full.functions
 import kotlin.reflect.full.withNullability
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class DynamicDatabaseTest : DatabaseTestBase() {
+class DynamicDatabaseTest : TestBase() {
 
     @TestFactory
     fun testBooleanFunctions(): List<DynamicTest> {
@@ -19,7 +19,7 @@ class DynamicDatabaseTest : DatabaseTestBase() {
 
     @TestFactory
     fun testIntFunctions(): List<DynamicTest> {
-        val excludes = listOf<String>(
+        val excludes = listOf(
             "getDefaultTransactionIsolation",
             "getResultSetHoldability",
             "getSQLStateType",

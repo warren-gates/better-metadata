@@ -248,6 +248,7 @@ class EnumTests {
 
     @TestFactory
     fun jdbcTypeSanityCheck(): List<DynamicTest>  {
+
         val testList: MutableList<DynamicTest> = mutableListOf()
         for (jdbcType in enumValues<JDBCType>()) {
             val sqlTypeValue = Types::class.staticProperties.filter { it.returnType == typeOf<Int>() }

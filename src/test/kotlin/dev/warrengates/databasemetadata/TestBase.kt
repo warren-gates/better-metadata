@@ -10,10 +10,15 @@ import java.sql.DatabaseMetaData
 import java.sql.DriverManager
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-abstract class DatabaseTestBase {
-    protected lateinit var conn: Connection
+abstract class TestBase {
+    private lateinit var conn: Connection
     protected lateinit var metadata: DatabaseMetaData
     protected lateinit var wrapper: Database
+
+    // TODO: look into using other databases for testing (mysql/mariadb, postgres, mssql,etc)
+    // use docker or testcontainers?
+    // see https://committed.io/posts/docker-java/docker-junit/
+    // see https://www.testcontainers.org/
 
     @BeforeAll
     fun setUp() {

@@ -2,7 +2,6 @@ package dev.warrengates.databasemetadata
 
 import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
@@ -12,7 +11,7 @@ import java.util.stream.Stream
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class DatabaseTest : DatabaseTestBase() {
+class DatabaseTest : TestBase() {
 
     @ParameterizedTest
     @MethodSource
@@ -34,16 +33,6 @@ class DatabaseTest : DatabaseTestBase() {
         )
     }
 
-    @Test
-    fun testTableCount() {
-        val wrapperTableCount = wrapper.getTables(null, null, null, null).size
-        var metadatTableCount = 0
-        val rs = metadata.getTables(null, null, null, null)
-        while (rs.next()) {
-            metadatTableCount++
-        }
-        assertEquals(metadatTableCount, wrapperTableCount)
-    }
 
     @Test
     fun testEnumReturnFunctions() {

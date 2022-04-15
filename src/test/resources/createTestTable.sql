@@ -2,5 +2,6 @@ CREATE TABLE Person (
     id INT PRIMARY KEY AUTO_INCREMENT,
     firstName VARCHAR(255) NOT NULL,
     lastName VARCHAR(255) NOT NULL,
-    dob DATE NULL
+    dob DATE NULL,
+    intValue INT NULL
 );
