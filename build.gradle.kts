@@ -13,11 +13,6 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
 
-//    // TODO: remove these before publishing
-//    // https://mvnrepository.com/artifact/org.apache.velocity/velocity
-//    implementation("org.apache.velocity:velocity:1.7")
-
-
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testImplementation("org.jetbrains.kotlin:kotlin-reflect:1.6.20")
     testImplementation("com.h2database:h2:2.1.212")

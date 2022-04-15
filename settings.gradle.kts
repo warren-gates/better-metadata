@@ -1,2 +1,2 @@
-rootProject.name = "DbMetadata"
+rootProject.name = "BetterMetadata"
 
