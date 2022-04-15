@@ -10,10 +10,10 @@ import java.sql.DatabaseMetaData
 /**
  * Version column type
  *
- * @property type
+ * @property value
  * @constructor Create empty Version column type
  */
-enum class VersionColumnType(override val type: Int): IntegerEnum {
+enum class VersionColumnType(override val value: Int): IntegerEnum {
     /**
      * Is Pseudo Column
      *

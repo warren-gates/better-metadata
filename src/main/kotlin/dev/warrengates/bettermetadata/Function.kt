@@ -41,7 +41,7 @@ class Function(private val metadata: DatabaseMetaData, rs: ResultSet) {
     /**
      * Type
      */
-    val type: FunctionReturnType = rs.getEnum("function_type")
+    val type: FunctionReturnType = rs.getIntegerEnum("function_type")
 
     /**
      * Specific name

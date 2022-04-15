@@ -20,7 +20,7 @@ class BestRowIdentifier(rs: ResultSet) {
     /**
      * Scope of result
      */
-    val scope: BestRowIdentifierScope = rs.getEnum("SCOPE")
+    val scope: BestRowIdentifierScope = rs.getIntegerEnum("SCOPE")
 
     /**
      * Column name
@@ -54,5 +54,5 @@ class BestRowIdentifier(rs: ResultSet) {
     /**
      * Indicates whether this is a pseudo column like an Oracle ROWID
      */
-    val pseudoColumn: BestRowColumnType = rs.getEnum("PSEUDO_COLUMN")
+    val pseudoColumn: BestRowColumnType = rs.getIntegerEnum("PSEUDO_COLUMN")
 }

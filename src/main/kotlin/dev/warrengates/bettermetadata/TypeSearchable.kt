@@ -10,10 +10,10 @@ import java.sql.DatabaseMetaData
 /**
  * Type searchable
  *
- * @property type
+ * @property value
  * @constructor Create empty Type searchable
  */
-enum class TypeSearchable(override val type: Int): IntegerEnum {
+enum class TypeSearchable(override val value: Int): IntegerEnum {
     /**
      * Basic
      *

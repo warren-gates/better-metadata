@@ -48,7 +48,7 @@ class Index(rs: ResultSet) {
     /**
      * Type
      */
-    val type: IndexType = rs.getEnum("TYPE")
+    val type: IndexType = rs.getIntegerEnum("TYPE")
 
     /**
      * Ordinal position

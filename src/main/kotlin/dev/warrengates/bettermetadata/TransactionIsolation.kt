@@ -10,10 +10,10 @@ import java.sql.Connection
 /**
  * Transaction isolation
  *
- * @property type
+ * @property value
  * @constructor Create empty Transaction isolation
  */
-enum class TransactionIsolation(override val type: Int): IntegerEnum {
+enum class TransactionIsolation(override val value: Int): IntegerEnum {
     /**
      * None
      *

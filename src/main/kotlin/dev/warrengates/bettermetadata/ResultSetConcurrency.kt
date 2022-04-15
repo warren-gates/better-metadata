@@ -10,10 +10,10 @@ import java.sql.ResultSet
 /**
  * Result set concurrency
  *
- * @property type
+ * @property value
  * @constructor Create empty Result set concurrency
  */
-enum class ResultSetConcurrency(override val type: Int): IntegerEnum {
+enum class ResultSetConcurrency(override val value: Int): IntegerEnum {
     /**
      * Read Only
      *

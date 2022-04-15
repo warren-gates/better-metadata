@@ -10,10 +10,10 @@ import java.sql.ResultSet
 /**
  * Result set type
  *
- * @property type
+ * @property value
  * @constructor Create empty Result set type
  */
-enum class ResultSetType(override val type: Int): IntegerEnum {
+enum class ResultSetType(override val value: Int): IntegerEnum {
     /**
      * Forward Only
      *

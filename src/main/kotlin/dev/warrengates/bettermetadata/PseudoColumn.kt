@@ -75,5 +75,5 @@ class PseudoColumn(rs: ResultSet) {
     /**
      * Is nullable
      */
-    val isNullable: String? = rs.getString("IS_NULLABLE")
+    val isNullable: IsNullable = rs.getStringEnum("IS_NULLABLE")
 }

@@ -10,14 +10,14 @@ import java.sql.DatabaseMetaData
 /**
  * Indicates whether NULL is allowed
  *
- * [type] values taken from [java.sql.DatabaseMetaData.attributeNoNulls],
+ * [value] values taken from [java.sql.DatabaseMetaData.attributeNoNulls],
  * [java.sql.DatabaseMetaData.attributeNullable], and
  * [java.sql.DatabaseMetaData.attributeNullableUnknown]
  *
- * @property type
+ * @property value
  * @constructor
  */
-enum class AttributeNullable(override val type: Int) : IntegerEnum {
+enum class AttributeNullable(override val value: Int) : IntegerEnum {
     /**
      * Might not allow NULL values
      */

@@ -50,5 +50,5 @@ class VersionColumn(rs: ResultSet) {
     /**
      * Pseudo column
      */
-    val pseudoColumn: VersionColumnType = rs.getEnum("PSEUDO_COLUMN")
+    val pseudoColumn: VersionColumnType = rs.getIntegerEnum("PSEUDO_COLUMN")
 }

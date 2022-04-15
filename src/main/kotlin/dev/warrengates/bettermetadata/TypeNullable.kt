@@ -10,10 +10,10 @@ import java.sql.DatabaseMetaData
 /**
  * Type nullable
  *
- * @property type
+ * @property value
  * @constructor Create empty Type nullable
  */
-enum class TypeNullable(override val type: Int): IntegerEnum {
+enum class TypeNullable(override val value: Int): IntegerEnum {
     /**
      * No
      *

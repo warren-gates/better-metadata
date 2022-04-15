@@ -10,10 +10,10 @@ import java.sql.DatabaseMetaData
 /**
  * Procedure return type
  *
- * @property type
+ * @property value
  * @constructor Create empty Procedure return type
  */
-enum class ProcedureReturnType(override val type: Int): IntegerEnum {
+enum class ProcedureReturnType(override val value: Int): IntegerEnum {
     /**
      * No Result
      *

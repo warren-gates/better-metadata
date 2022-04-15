@@ -10,10 +10,10 @@ import java.sql.DatabaseMetaData
 /**
  * Index type
  *
- * @property type
+ * @property value
  * @constructor Create empty Index type
  */
-enum class IndexType(override val type: Int): IntegerEnum {
+enum class IndexType(override val value: Int): IntegerEnum {
     /**
      * Statistic
      *

@@ -39,7 +39,7 @@ class FunctionColumn(rs: ResultSet) {
     /**
      * Column type
      */
-    val columnType: FunctionColumnType = rs.getEnum("COLUMN_TYPE")
+    val columnType: FunctionColumnType = rs.getIntegerEnum("COLUMN_TYPE")
 
     /**
      * SQL type from [java.sql.Types]
@@ -74,7 +74,7 @@ class FunctionColumn(rs: ResultSet) {
     /**
      * Nullable
      */
-    val nullable: FunctionColumnNullable = rs.getEnum("NULLABLE")
+    val nullable: FunctionColumnNullable = rs.getIntegerEnum("NULLABLE")
 
     /**
      * Remarks
@@ -93,8 +93,8 @@ class FunctionColumn(rs: ResultSet) {
 
     /**
      * Is nullable
-     */// TODO: change all 'isNullable' to enum?
-    val isNullable: String? = rs.getString("IS_NULLABLE")
+     */
+    val isNullable: IsNullable = rs.getStringEnum("IS_NULLABLE")
 
     /**
      * Specific name

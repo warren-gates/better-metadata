@@ -10,10 +10,10 @@ import java.sql.DatabaseMetaData
 /**
  * Procedure column type
  *
- * @property type
+ * @property value
  * @constructor Create empty Procedure column type
  */
-enum class ProcedureColumnType(override val type: Int): IntegerEnum {
+enum class ProcedureColumnType(override val value: Int): IntegerEnum {
     /**
      * In
      *

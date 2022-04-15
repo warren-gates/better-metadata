@@ -10,10 +10,10 @@ import java.sql.DatabaseMetaData
 /**
  * Foreign key initial deferrability
  *
- * @property type
+ * @property value
  * @constructor Create empty Foreign key initial deferrability
  */
-enum class ForeignKeyInitialDeferrability(override val type: Int): IntegerEnum {
+enum class ForeignKeyInitialDeferrability(override val value: Int): IntegerEnum {
     /**
      * Deferred
      *

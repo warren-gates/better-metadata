@@ -49,7 +49,7 @@ class TypeInfo(rs: ResultSet) {
     /**
      * Nullable
      */
-    val nullable: TypeNullable = rs.getEnum("NULLABLE")
+    val nullable: TypeNullable = rs.getIntegerEnum("NULLABLE")
 
     /**
      * Case sensitive
@@ -59,7 +59,7 @@ class TypeInfo(rs: ResultSet) {
     /**
      * Searchable
      */
-    val searchable: TypeSearchable = rs.getEnum("SEARCHABLE")
+    val searchable: TypeSearchable = rs.getIntegerEnum("SEARCHABLE")
 
     /**
      * Is unsigned

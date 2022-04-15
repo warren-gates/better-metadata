@@ -57,7 +57,7 @@ public class JDatabaseTest extends JDatabaseTestBase {
 
     private static <T extends Enum<T> & IntegerEnum> T valueOf(Class<T> enumType, int value) {
         for (T en : enumType.getEnumConstants()) {
-            if (en.getType() == value) {
+            if (en.getValue() == value) {
                 return en;
             }
         }

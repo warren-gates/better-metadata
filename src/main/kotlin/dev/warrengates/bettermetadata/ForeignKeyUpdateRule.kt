@@ -10,10 +10,10 @@ import java.sql.DatabaseMetaData
 /**
  * Foreign key update rule
  *
- * @property type
+ * @property value
  * @constructor Create empty Foreign key update rule
  */
-enum class ForeignKeyUpdateRule(override val type: Int): IntegerEnum {
+enum class ForeignKeyUpdateRule(override val value: Int): IntegerEnum {
     /**
      * No Action
      *

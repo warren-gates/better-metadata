@@ -10,10 +10,10 @@ import java.sql.DatabaseMetaData
 /**
  * Foreign key delete rule
  *
- * @property type
+ * @property value
  * @constructor Create empty Foreign key delete rule
  */
-enum class ForeignKeyDeleteRule(override val type: Int): IntegerEnum {
+enum class ForeignKeyDeleteRule(override val value: Int): IntegerEnum {
     /**
      * No Action
      *

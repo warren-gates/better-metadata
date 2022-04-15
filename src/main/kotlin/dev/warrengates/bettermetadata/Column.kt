@@ -70,7 +70,7 @@ class Column(private val metadata: DatabaseMetaData, rs: ResultSet) {
     /**
      * Nullable
      */
-    val nullable: ColumnNullable = rs.getEnum("NULLABLE")
+    val nullable: ColumnNullable = rs.getIntegerEnum("NULLABLE")
 
     /**
      * Remarks
@@ -99,7 +99,7 @@ class Column(private val metadata: DatabaseMetaData, rs: ResultSet) {
     /**
      * Is nullable
      */
-    val isNullable: String? = rs.getString("IS_NULLABLE")
+    val isNullable: IsNullable = rs.getStringEnum("IS_NULLABLE")
 
     /**
      * Scope catalog
@@ -123,13 +123,13 @@ class Column(private val metadata: DatabaseMetaData, rs: ResultSet) {
 
     /**
      * Is autoincrement
-     */// TODO: make these two enums
-    val isAutoincrement: String? = rs.getString("IS_AUTOINCREMENT")
+     */
+    val isAutoincrement: IsAutoIncrement = rs.getStringEnum("IS_AUTOINCREMENT")
 
     /**
      * Is generated column
      */
-    val isGeneratedColumn: String? = rs.getString("IS_GENERATEDCOLUMN")
+    val isGeneratedColumn: IsGeneratedColumn = rs.getStringEnum("IS_GENERATEDCOLUMN")
 
     /**
      * Get column privileges

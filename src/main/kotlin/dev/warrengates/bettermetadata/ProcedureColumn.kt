@@ -39,7 +39,7 @@ class ProcedureColumn(rs: ResultSet) {
     /**
      * Column type
      */
-    val columnType: ProcedureColumnType = rs.getEnum("COLUMN_TYPE")
+    val columnType: ProcedureColumnType = rs.getIntegerEnum("COLUMN_TYPE")
 
     /**
      * SQL type from [java.sql.Types]
@@ -74,7 +74,7 @@ class ProcedureColumn(rs: ResultSet) {
     /**
      * Nullable
      */
-    val nullable: ProcedureColumnNullable = rs.getEnum("NULLABLE")
+    val nullable: ProcedureColumnNullable = rs.getIntegerEnum("NULLABLE")
 
     /**
      * Remarks
@@ -103,7 +103,7 @@ class ProcedureColumn(rs: ResultSet) {
     /**
      * Is nullable
      */
-    val isNullable: String? = rs.getString("IS_NULLABLE")
+    val isNullable: IsNullable = rs.getStringEnum("IS_NULLABLE")
 
     /**
      * Specific name

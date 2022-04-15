@@ -10,14 +10,14 @@ import java.sql.DatabaseMetaData
 /**
  * Best row column type
  *
- * [type] values taken from [java.sql.DatabaseMetaData.bestRowPseudo],
+ * [value] values taken from [java.sql.DatabaseMetaData.bestRowPseudo],
  * [java.sql.DatabaseMetaData.bestRowNotPseudo], and
  * [java.sql.DatabaseMetaData.bestRowUnknown]
  *
- * @property type
+ * @property value
  * @constructor Create empty Best row column type
  */
-enum class BestRowColumnType(override val type: Int): IntegerEnum {
+enum class BestRowColumnType(override val value: Int): IntegerEnum {
     /**
      * Indicates best row identifier is a pseudo column
      */

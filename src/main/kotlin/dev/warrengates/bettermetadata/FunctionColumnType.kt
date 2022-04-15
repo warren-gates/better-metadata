@@ -10,10 +10,10 @@ import java.sql.DatabaseMetaData
 /**
  * Function column type
  *
- * @property type
+ * @property value
  * @constructor Create empty Function column type
  */
-enum class FunctionColumnType(override val type: Int): IntegerEnum {
+enum class FunctionColumnType(override val value: Int): IntegerEnum {
     /**
      * In
      *

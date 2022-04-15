@@ -54,11 +54,22 @@ inline fun <reified T> getIterableFromRs(
  * @return
  */
 inline fun <reified T> valueOf(value: Int): T where T : Enum<T>, T : IntegerEnum {
-    return enumValues<T>().first { value == it.type }
+    return enumValues<T>().first { value == it.value }
 }
 
-inline fun <reified T> ResultSet.getEnum(columnName: String): T where T : Enum<T>, T : IntegerEnum {
+inline fun <reified T> valueOf(value: String): T where T : Enum<T>, T : StringEnum {
+    return enumValues<T>().first { value == it.value }
+}
+
+inline fun <reified T> ResultSet.getIntegerEnum(columnName: String): T where T : Enum<T>, T : IntegerEnum {
     val type = this.getObject(columnName) as Int
+    return valueOf(type)
+}
+
+inline fun <reified T> ResultSet.getStringEnum(columnName: String): T where T : Enum<T>, T : StringEnum {
+    // elvis needed for isGrantable in ColumnPrivilege which returns null for unknown,
+    // other uses return empty string
+    val type = this.getString(columnName) ?: ""
     return valueOf(type)
 }
 

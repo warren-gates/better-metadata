@@ -64,12 +64,12 @@ class Key(rs: ResultSet) {
     /**
      * Update rule
      */
-    val updateRule: ForeignKeyUpdateRule = rs.getEnum("UPDATE_RULE")
+    val updateRule: ForeignKeyUpdateRule = rs.getIntegerEnum("UPDATE_RULE")
 
     /**
      * Delete rule
      */
-    val deleteRule: ForeignKeyDeleteRule = rs.getEnum("DELETE_RULE")
+    val deleteRule: ForeignKeyDeleteRule = rs.getIntegerEnum("DELETE_RULE")
 
     /**
      * Foreign key name
@@ -85,5 +85,5 @@ class Key(rs: ResultSet) {
      * Deferrability
      */
     val deferrability: ForeignKeyInitialDeferrability =
-        rs.getEnum("DEFERRABILITY")
+        rs.getIntegerEnum("DEFERRABILITY")
 }

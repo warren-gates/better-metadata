@@ -10,11 +10,11 @@ import java.sql.DatabaseMetaData
 /**
  * Function column nullable
  *
- * @property type
+ * @property value
  * @property text
  * @constructor Create empty Function column nullable
  */
-enum class FunctionColumnNullable(override val type: Int, private val text: String): IntegerEnum {
+enum class FunctionColumnNullable(override val value: Int, private val text: String): IntegerEnum {
     /**
      * No
      *

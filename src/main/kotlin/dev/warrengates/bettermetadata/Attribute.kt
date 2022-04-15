@@ -18,32 +18,32 @@ import java.sql.ResultSet
 class Attribute(rs: ResultSet) {
 
     /**
-     * Catalog name
+     * Catalog name, from "TYPE_CAT" column
      */
     val catalog: String? = rs.getString("TYPE_CAT")
 
     /**
-     * Schema name
+     * Schema name, from "" column
      */
     val schema: String? = rs.getString("TYPE_SCHEM")
 
     /**
-     * Type name
+     * Type name, from "" column
      */
     val typeName: String? = rs.getString("TYPE_NAME")
 
     /**
-     * Attribute name
+     * Attribute name, from "" column
      */
     val name: String? = rs.getString("ATTR_NAME")
 
     /**
-     * SQL type from [java.sql.Types]
+     * SQL type, from "" column
      */
     val dataType: JDBCType = rs.getJDBCType("DATA_TYPE")
 
     /**
-     * Attribute type name
+     * Attribute type name, from "" column
      *
      * Data source dependent type name. For a [UserDefinedType] the name is fully qualified.
      * For a REF, the type name is fully qualified and represents the target type of the
@@ -52,7 +52,9 @@ class Attribute(rs: ResultSet) {
     val attributeTypeName: String? = rs.getString("ATTR_TYPE_NAME")
 
     /**
-     * Column size. For char or date types this is the maximum number of characters, for numeric
+     * Column size, from "" column
+     *
+     * For char or date types this is the maximum number of characters, for numeric
      * or decimal types this is precision
      *
      */
@@ -71,7 +73,7 @@ class Attribute(rs: ResultSet) {
     /**
      * Indicates whether attribute is nullable
      */
-    val nullable: AttributeNullable = rs.getEnum("NULLABLE")
+    val nullable: AttributeNullable = rs.getIntegerEnum("NULLABLE")
 
     /**
      * Comment describing column
@@ -104,7 +106,7 @@ class Attribute(rs: ResultSet) {
      * NO if the attribute cannot include NULLs
      * empty string if nullability is unknown
      */
-    val isNullable: String? = rs.getString("IS_NULLABLE")
+    val isNullable: IsNullable = rs.getStringEnum("IS_NULLABLE")
 
     /**
      * Catalog of table that is the scope of a reference attribute (null if [dataType] isn't REF

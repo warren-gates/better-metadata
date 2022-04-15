@@ -10,10 +10,10 @@ import java.sql.ResultSet
 /**
  * Result set holdability
  *
- * @property type
+ * @property value
  * @constructor Create empty Result set holdability
  */
-enum class ResultSetHoldability(override val type: Int):IntegerEnum {
+enum class ResultSetHoldability(override val value: Int):IntegerEnum {
     /**
      * Hold Cursors Over Commit
      *

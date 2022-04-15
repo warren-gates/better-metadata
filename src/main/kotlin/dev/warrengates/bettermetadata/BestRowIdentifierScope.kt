@@ -10,11 +10,11 @@ import java.sql.DatabaseMetaData
 /**
  * Best row identifier scope
  *
- * [type] values taken from [java.sql.DatabaseMetaData.bestRowTemporary],
+ * [value] values taken from [java.sql.DatabaseMetaData.bestRowTemporary],
  * [java.sql.DatabaseMetaData.bestRowTransaction], and
  * [java.sql.DatabaseMetaData.bestRowSession]
  */
-enum class BestRowIdentifierScope(override val type: Int): IntegerEnum {
+enum class BestRowIdentifierScope(override val value: Int): IntegerEnum {
     /**
      * valid for remainder of current session
      */

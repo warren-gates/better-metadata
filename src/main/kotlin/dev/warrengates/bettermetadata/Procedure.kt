@@ -40,7 +40,7 @@ class Procedure(private val metadata: DatabaseMetaData, rs: ResultSet) {
     /**
      * Return type
      */
-    val returnType: ProcedureReturnType = rs.getEnum("procedure_type")
+    val returnType: ProcedureReturnType = rs.getIntegerEnum("procedure_type")
 
     /**
      * Specific name

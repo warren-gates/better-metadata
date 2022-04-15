@@ -10,10 +10,10 @@ import java.sql.DatabaseMetaData
 /**
  * S q l state type
  *
- * @property type
+ * @property value
  * @constructor Create empty S q l state type
  */
-enum class SQLStateType(override val type: Int): IntegerEnum {
+enum class SQLStateType(override val value: Int): IntegerEnum {
     /**
      * Sql
      *

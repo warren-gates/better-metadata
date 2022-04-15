@@ -77,7 +77,7 @@ class Table(private val metadata: DatabaseMetaData, rs: ResultSet) {
      * @return
      */
     fun getBestRowIdentifier(scope: BestRowIdentifierScope, nullable: Boolean): List<BestRowIdentifier> = getIterableFromRs(
-        metadata.getBestRowIdentifier(catalog, schema, name, scope.type, nullable)
+        metadata.getBestRowIdentifier(catalog, schema, name, scope.value, nullable)
     ) { BestRowIdentifier(it) }
 
     /**

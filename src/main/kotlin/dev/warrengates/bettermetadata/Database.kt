@@ -70,7 +70,7 @@ class Database @JvmOverloads constructor(
      * @param resultSetType
      * @return
      */
-    fun deletesAreDetected(resultSetType: ResultSetType): Boolean = metaData.deletesAreDetected(resultSetType.type)
+    fun deletesAreDetected(resultSetType: ResultSetType): Boolean = metaData.deletesAreDetected(resultSetType.value)
 
     /**
      * Does max row size include blobs
@@ -675,7 +675,7 @@ class Database @JvmOverloads constructor(
      * @param resultSetType
      * @return
      */
-    fun insertsAreDetected(resultSetType: ResultSetType): Boolean = metaData.insertsAreDetected(resultSetType.type)
+    fun insertsAreDetected(resultSetType: ResultSetType): Boolean = metaData.insertsAreDetected(resultSetType.value)
 
     /**
      * Is catalog at start
@@ -740,7 +740,7 @@ class Database @JvmOverloads constructor(
      * @return
      */
     fun othersUpdatesAreVisible(resultSetType: ResultSetType): Boolean =
-        metaData.othersUpdatesAreVisible(resultSetType.type)
+        metaData.othersUpdatesAreVisible(resultSetType.value)
 
     /**
      * Others deletes are visible
@@ -749,7 +749,7 @@ class Database @JvmOverloads constructor(
      * @return
      */
     fun othersDeletesAreVisible(resultSetType: ResultSetType): Boolean =
-        metaData.othersDeletesAreVisible(resultSetType.type)
+        metaData.othersDeletesAreVisible(resultSetType.value)
 
     /**
      * Others inserts are visible
@@ -758,7 +758,7 @@ class Database @JvmOverloads constructor(
      * @return
      */
     fun othersInsertsAreVisible(resultSetType: ResultSetType): Boolean =
-        metaData.othersInsertsAreVisible(resultSetType.type)
+        metaData.othersInsertsAreVisible(resultSetType.value)
 
     /**
      * Own updates are visible
@@ -766,7 +766,7 @@ class Database @JvmOverloads constructor(
      * @param resultSetType
      * @return
      */
-    fun ownUpdatesAreVisible(resultSetType: ResultSetType): Boolean = metaData.ownUpdatesAreVisible(resultSetType.type)
+    fun ownUpdatesAreVisible(resultSetType: ResultSetType): Boolean = metaData.ownUpdatesAreVisible(resultSetType.value)
 
     /**
      * Own deletes are visible
@@ -774,7 +774,7 @@ class Database @JvmOverloads constructor(
      * @param resultSetType
      * @return
      */
-    fun ownDeletesAreVisible(resultSetType: ResultSetType): Boolean = metaData.ownDeletesAreVisible(resultSetType.type)
+    fun ownDeletesAreVisible(resultSetType: ResultSetType): Boolean = metaData.ownDeletesAreVisible(resultSetType.value)
 
     /**
      * Own inserts are visible
@@ -782,7 +782,7 @@ class Database @JvmOverloads constructor(
      * @param resultSetType
      * @return
      */
-    fun ownInsertsAreVisible(resultSetType: ResultSetType): Boolean = metaData.ownInsertsAreVisible(resultSetType.type)
+    fun ownInsertsAreVisible(resultSetType: ResultSetType): Boolean = metaData.ownInsertsAreVisible(resultSetType.value)
 
     /**
      * Stores upper case identifiers
@@ -1161,7 +1161,7 @@ class Database @JvmOverloads constructor(
      */
     fun supportsResultSetConcurrency(
         resultSetType: ResultSetType, resultSetConcurrency: ResultSetConcurrency,
-    ): Boolean = metaData.supportsResultSetConcurrency(resultSetType.type, resultSetConcurrency.type)
+    ): Boolean = metaData.supportsResultSetConcurrency(resultSetType.value, resultSetConcurrency.value)
 
     /**
      * Supports result set holdability
@@ -1170,7 +1170,7 @@ class Database @JvmOverloads constructor(
      * @return
      */
     fun supportsResultSetHoldability(resultSetHoldability: ResultSetHoldability): Boolean =
-        metaData.supportsResultSetHoldability(resultSetHoldability.type)
+        metaData.supportsResultSetHoldability(resultSetHoldability.value)
 
     /**
      * Supports result set type
@@ -1179,7 +1179,7 @@ class Database @JvmOverloads constructor(
      * @return
      */
     fun supportsResultSetType(resultSetType: ResultSetType): Boolean =
-        metaData.supportsResultSetType(resultSetType.type)
+        metaData.supportsResultSetType(resultSetType.value)
 
     /**
      * Supports savepoints
@@ -1307,7 +1307,7 @@ class Database @JvmOverloads constructor(
      * @return
      */
     fun supportsTransactionIsolationLevel(transactionIsolation: TransactionIsolation): Boolean =
-        metaData.supportsTransactionIsolationLevel(transactionIsolation.type)
+        metaData.supportsTransactionIsolationLevel(transactionIsolation.value)
 
     /**
      * Supports union
@@ -1329,7 +1329,7 @@ class Database @JvmOverloads constructor(
      * @param resultSetType
      * @return
      */
-    fun updatesAreDetected(resultSetType: ResultSetType): Boolean = metaData.updatesAreDetected(resultSetType.type)
+    fun updatesAreDetected(resultSetType: ResultSetType): Boolean = metaData.updatesAreDetected(resultSetType.value)
 
     /**
      * Uses local file per table

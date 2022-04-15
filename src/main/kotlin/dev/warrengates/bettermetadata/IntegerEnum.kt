@@ -14,12 +14,12 @@ interface IntegerEnum {
     /**
      * Type
      */
-    val type: Int
+    val value: Int
 
     /**
      * To int
      *
      * @return
      */
-    fun toInt(): Int = type
+    fun toInt(): Int = value
 }

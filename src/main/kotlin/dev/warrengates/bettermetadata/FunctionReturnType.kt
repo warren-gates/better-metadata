@@ -10,10 +10,10 @@ import java.sql.DatabaseMetaData
 /**
  * Function return type
  *
- * @property type
+ * @property value
  * @constructor Create empty Function return type
  */
-enum class FunctionReturnType(override val type: Int): IntegerEnum {
+enum class FunctionReturnType(override val value: Int): IntegerEnum {
     /**
      * No Table
      *

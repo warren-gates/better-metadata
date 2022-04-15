@@ -10,11 +10,11 @@ import java.sql.DatabaseMetaData
 /**
  * Procedure column nullable
  *
- * @property type
+ * @property value
  * @property text
  * @constructor Create empty Procedure column nullable
  */
-enum class ProcedureColumnNullable(override val type: Int, private val text: String): IntegerEnum {
+enum class ProcedureColumnNullable(override val value: Int, private val text: String): IntegerEnum {
     /**
      * No
      *
