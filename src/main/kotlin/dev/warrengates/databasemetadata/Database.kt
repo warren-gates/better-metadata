@@ -86,7 +86,7 @@ class Database @JvmOverloads constructor(
      *
      * @return
      */
-    fun getCatalogs(): List<Catalog> = getIterableFromRs(metaData.catalogs) { Catalog(it) }
+    fun getCatalogs(): List<String> = getIterableFromRs(metaData.catalogs) { it.getString("TABLE_CAT") }
 
     /**
      * Get catalog separator
@@ -391,7 +391,7 @@ class Database @JvmOverloads constructor(
      *
      * @return
      */
-    fun getNumericFunctions(): List<NumericFunction> = metaData.numericFunctions.split(separator).map { NumericFunction(it) }
+    fun getNumericFunctions(): List<String> = metaData.numericFunctions.split(separator)
 
     /**
      * Get procedures
@@ -471,7 +471,7 @@ class Database @JvmOverloads constructor(
      *
      * @return
      */
-    fun getSQLKeywords(): List<SQLKeyword> = metaData.sqlKeywords.split(separator).map { SQLKeyword(it) }
+    fun getSQLKeywords(): List<String> = metaData.sqlKeywords.split(separator)
 
     /**
      * Get s q l state type
@@ -485,7 +485,7 @@ class Database @JvmOverloads constructor(
      *
      * @return
      */
-    fun getStringFunctions(): List<StringFunction> = metaData.stringFunctions.split(separator).map { StringFunction(it) }
+    fun getStringFunctions(): List<String> = metaData.stringFunctions.split(separator)
 
     /**
      * Get super tables
@@ -552,7 +552,7 @@ class Database @JvmOverloads constructor(
      *
      * @return
      */
-    fun getSystemFunctions(): List<SystemFunction> = metaData.systemFunctions.split(separator).map { SystemFunction(it) }
+    fun getSystemFunctions(): List<String> = metaData.systemFunctions.split(separator)
 
     /**
      * Get tables
@@ -588,9 +588,9 @@ class Database @JvmOverloads constructor(
     fun getTables(
         schema: Schema,
         tableNamePattern: String? = null,
-        types: Array<TableType>? = null,
+        types: Array<String>? = null,
     ): List<Table> {
-        return getTables(schema.catalog, schema.name, tableNamePattern, types?.map { it.name }?.toTypedArray())
+        return getTables(schema.catalog, schema.name, tableNamePattern, types)
     }
 
     /**
@@ -598,10 +598,10 @@ class Database @JvmOverloads constructor(
      *
      * @return
      */
-    fun getTableTypes(): List<TableType> {
+    fun getTableTypes(): List<String> {
         return getIterableFromRs(
             metaData.tableTypes
-        ) { TableType(it) }
+        ) { it.getString("TABLE_TYPE") }
     }
 
     /**
@@ -609,8 +609,7 @@ class Database @JvmOverloads constructor(
      *
      * @return
      */
-    fun getTimeDateFunctions(): List<TimeDateFunction> =
-        metaData.timeDateFunctions.split(separator).map { TimeDateFunction(it) }
+    fun getTimeDateFunctions(): List<String> = metaData.timeDateFunctions.split(separator)
 
     /**
      * Get u r l

@@ -32,7 +32,6 @@ class Table(private val metadata: DatabaseMetaData, rs: ResultSet) {
     /**
      * Type
      */
-    // TODO: use TableType?
     val type: String? = rs.getString("TABLE_TYPE")
 
     /**
