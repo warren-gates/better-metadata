@@ -16,10 +16,12 @@ import java.sql.ResultSet
  * @param rs
  */
 class VersionColumn(rs: ResultSet) {
+    // scope is not used per https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getVersionColumns(java.lang.String,java.lang.String,java.lang.String)
+//    val scope: Short = rs.getShort("SCOPE")
+
     /**
      * Column name
-     */// scope is not used per https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getVersionColumns(java.lang.String,java.lang.String,java.lang.String)
-//    val scope: Short = rs.getShort("SCOPE")
+     */
     val columnName: String = rs.getString("COLUMN_NAME")
 
     /**

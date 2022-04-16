@@ -64,7 +64,7 @@ class ProcedureColumn(rs: ResultSet) {
     /**
      * Scale
      */
-    val scale: Short = rs.getShort("SCALE")
+    val scale: MetadataInt = rs.getMetadataInt("SCALE")
 
     /**
      * Radix

@@ -54,7 +54,7 @@ class FunctionColumn(rs: ResultSet) {
     /**
      * Precision
      */
-    val precision: Short = rs.getShort("PRECISION")
+    val precision: Int = rs.getInt("PRECISION")
 
     /**
      * Length
@@ -64,12 +64,12 @@ class FunctionColumn(rs: ResultSet) {
     /**
      * Scale
      */
-    val scale: Short = rs.getShort("SCALE")
+    val scale: MetadataInt = rs.getMetadataInt("SCALE")
 
     /**
      * Radix
-     */// TODO: rename to numericPrecisionRadix or change others to radix
-    val radix: Short = rs.getShort("RADIX")
+     */
+    val radix: Int = rs.getInt("RADIX")
 
     /**
      * Nullable

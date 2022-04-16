@@ -65,7 +65,7 @@ class Column(private val metadata: DatabaseMetaData, rs: ResultSet) {
     /**
      * Numeric precision radix
      */
-    val numericPrecisionRadix: MetadataInt = rs.getMetadataInt("NUM_PREC_RADIX")
+    val radix: MetadataInt = rs.getMetadataInt("NUM_PREC_RADIX")
 
     /**
      * Nullable

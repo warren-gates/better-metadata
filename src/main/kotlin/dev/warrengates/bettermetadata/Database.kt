@@ -616,6 +616,16 @@ class Database @JvmOverloads constructor(
      */
     fun getTimeDateFunctions(): List<String> = metaData.timeDateFunctions.split(separator)
 
+
+    /**
+     * Get type info
+     *
+     * @return
+     */
+    fun getTypeInfo(): List<TypeInfo> {
+        return getIterableFromRs(metaData.typeInfo) { TypeInfo(it) }
+    }
+
     /**
      * Get u r l
      *

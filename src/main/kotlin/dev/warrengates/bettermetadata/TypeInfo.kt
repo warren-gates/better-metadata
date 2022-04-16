@@ -84,12 +84,12 @@ class TypeInfo(rs: ResultSet) {
     /**
      * Minimum scale
      */
-    val minimumScale: Short = rs.getShort("MINIMUM_SCALE")
+    val minimumScale: Int = rs.getInt("MINIMUM_SCALE")
 
     /**
      * Maximum scale
      */
-    val maximumScale: Short = rs.getShort("MAXIMUM_SCALE")
+    val maximumScale: Int = rs.getInt("MAXIMUM_SCALE")
 
     // unused per https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getTypeInfo()
 //    val sqlDataType: Int = rs.getInt("SQL_DATA_TYPE")
@@ -98,5 +98,5 @@ class TypeInfo(rs: ResultSet) {
     /**
      * Numeric precision radix
      */
-    val numericPrecisionRadix: Int = rs.getInt("NUM_PREC_RADIX")
+    val radix: Int = rs.getInt("NUM_PREC_RADIX")
 }

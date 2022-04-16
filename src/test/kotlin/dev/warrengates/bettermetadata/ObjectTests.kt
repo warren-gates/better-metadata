@@ -77,6 +77,13 @@ class ObjectTests : TestBase() {
                 metadata.tableTypes
             )
         )
+
+        testList.add(
+            getObjectCountTest("TypeInfo",
+                wrapper.getTypeInfo(),
+                metadata.typeInfo)
+        )
+
         testList.add(
             getObjectCountTest("UserDefinedTypes",
                 wrapper.getUserDefinedTypes(),

@@ -11,6 +11,8 @@ import java.sql.ResultSet
 /**
  * Attribute represents an attribute of a [UserDefinedType]. It does not contain inherited attributes.
  *
+ * See documentation [here](https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getAttributes(java.lang.String,java.lang.String,java.lang.String,java.lang.String))
+ *
  * @constructor
  *
  * @param rs a [ResultSet] 
@@ -68,7 +70,7 @@ class Attribute(rs: ResultSet) {
     /**
      * Numeric precision radix (typically either 10 or 2)
      */
-    val numericPrecisionRadix: Int = rs.getInt("NUM_PREC_RADIX")
+    val radix: Int = rs.getInt("NUM_PREC_RADIX")
 
     /**
      * Indicates whether attribute is nullable

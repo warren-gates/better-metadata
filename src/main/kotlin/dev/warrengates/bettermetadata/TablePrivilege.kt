@@ -48,5 +48,5 @@ class TablePrivilege(rs: ResultSet) {
     /**
      * Is grantable
      */
-    val isGrantable: String? = rs.getString("IS_GRANTABLE")
+    val isGrantable: IsGrantable = rs.getStringEnum("IS_GRANTABLE")
 }

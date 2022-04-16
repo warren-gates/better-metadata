@@ -1,0 +1,17 @@
+//[BetterMetadata](../../../index.md)/[dev.warrengates.bettermetadata](../index.md)/[HelpersKt](index.md)
+
+# HelpersKt
+
+[jvm]\
+public final class [HelpersKt](index.md)
+
+## Functions
+
+| Name | Summary |
+|---|---|
+| [getIntegerEnum](get-integer-enum.md) | [jvm]<br>final static T[getIntegerEnum](get-integer-enum.md)&lt;T extends [Enum](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)&lt;T&gt;, [IntegerEnum](../-integer-enum/index.md)&gt;([ResultSet](https://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html)$self, [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)columnName) |
+| [getIterableFromRs](get-iterable-from-rs.md) | [jvm]<br>final static [List](https://docs.oracle.com/javase/8/docs/api/java/util/List.html)&lt;T&gt;[getIterableFromRs](get-iterable-from-rs.md)&lt;T extends [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)&gt;([ResultSet](https://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html)rs, Function1&lt;[ResultSet](https://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html), T&gt;creator)<br>final static [List](https://docs.oracle.com/javase/8/docs/api/java/util/List.html)&lt;T&gt;[getIterableFromRs](get-iterable-from-rs.md)&lt;T extends [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)&gt;([DatabaseMetaData](https://docs.oracle.com/javase/8/docs/api/java/sql/DatabaseMetaData.html)metaData, [ResultSet](https://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html)rs, Function2&lt;[DatabaseMetaData](https://docs.oracle.com/javase/8/docs/api/java/sql/DatabaseMetaData.html), [ResultSet](https://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html), T&gt;creator)<br>Get iterable from rs |
+| [getJDBCType](get-j-d-b-c-type.md) | [jvm]<br>final static [JDBCType](https://docs.oracle.com/javase/8/docs/api/java/sql/JDBCType.html)[getJDBCType](get-j-d-b-c-type.md)([ResultSet](https://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html)$self, [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)columnName) |
+| [getMetadataInt](get-metadata-int.md) | [jvm]<br>final static [Integer](https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)[getMetadataInt](get-metadata-int.md)([ResultSet](https://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html)$self, [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)columnName) |
+| [getStringEnum](get-string-enum.md) | [jvm]<br>final static T[getStringEnum](get-string-enum.md)&lt;T extends [Enum](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)&lt;T&gt;, [StringEnum](../-string-enum/index.md)&gt;([ResultSet](https://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html)$self, [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)columnName) |
+| [valueOf](value-of.md) | [jvm]<br>final static T[valueOf](value-of.md)&lt;T extends [Enum](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)&lt;T&gt;, [IntegerEnum](../-integer-enum/index.md)&gt;([Integer](https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)value)<br>Value of<br>[jvm]<br>final static T[valueOf](value-of.md)&lt;T extends [Enum](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)&lt;T&gt;, [StringEnum](../-string-enum/index.md)&gt;([String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)value) |

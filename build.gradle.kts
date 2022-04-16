@@ -1,10 +1,11 @@
 plugins {
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.6.20"
+    id("org.jetbrains.dokka") version "1.6.20"
     java
 }
 
 group = "dev.warrengates"
-version = "1.0-SNAPSHOT"
+version = "0.9"
 
 repositories {
     mavenCentral()
@@ -12,6 +13,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+    dokkaGfmPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.6.20")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testImplementation("org.jetbrains.kotlin:kotlin-reflect:1.6.20")
@@ -20,6 +22,14 @@ dependencies {
     // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.2")
 
+}
+
+tasks.dokkaHtml.configure {
+    outputDirectory.set(file("docs"))
+}
+
+tasks.dokkaGfm.configure {
+    outputDirectory.set(file("docs"))
 }
 
 tasks.getByName<Test>("test") {

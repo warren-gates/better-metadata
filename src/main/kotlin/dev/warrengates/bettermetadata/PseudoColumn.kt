@@ -55,7 +55,7 @@ class PseudoColumn(rs: ResultSet) {
     /**
      * Numeric precision radix
      */
-    val numericPrecisionRadix: Int = rs.getInt("NUM_PREC_RADIX")
+    val radix: Int = rs.getInt("NUM_PREC_RADIX")
 
     /**
      * Column usage

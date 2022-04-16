@@ -1,0 +1,16 @@
+//[BetterMetadata](../../../../index.md)/[dev.warrengates.bettermetadata](../../index.md)/[ResultSetType](../index.md)/[SCROLL_INSENSITIVE](index.md)
+
+# SCROLL_INSENSITIVE
+
+[jvm]\
+[SCROLL_INSENSITIVE](index.md)
+
+Scroll Insensitive
+
+## Properties
+
+| Name | Summary |
+|---|---|
+| [name](../../-version-column-type/-i-s_-p-s-e-u-d-o_-c-o-l-u-m-n/index.md#-372974862%2FProperties%2F-1216412040) | [jvm]<br>public final [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)[name](../../-version-column-type/-i-s_-p-s-e-u-d-o_-c-o-l-u-m-n/index.md#-372974862%2FProperties%2F-1216412040) |
+| [ordinal](../../-version-column-type/-i-s_-p-s-e-u-d-o_-c-o-l-u-m-n/index.md#-739389684%2FProperties%2F-1216412040) | [jvm]<br>public final [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)[ordinal](../../-version-column-type/-i-s_-p-s-e-u-d-o_-c-o-l-u-m-n/index.md#-739389684%2FProperties%2F-1216412040) |
+| [value](../-f-o-r-w-a-r-d_-o-n-l-y/index.md#731134874%2FProperties%2F-1216412040) | [jvm]<br>public open [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)[value](../-f-o-r-w-a-r-d_-o-n-l-y/index.md#731134874%2FProperties%2F-1216412040) |
