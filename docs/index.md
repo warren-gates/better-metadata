@@ -48,6 +48,6 @@ DatabaseMetaData documentation indicates that nulls are returned. See the
 details.
 
 # Documentation
-[Java style](https://warren-gates.github.io/better-metadata/docs/javadoc/index.html)
+[Java style](https://warren-gates.github.io/better-metadata/javadoc/index.html)
 
-[Kotlin style](https://warren-gates.github.io/better-metadata/docs/kdoc/index.html)
+[Kotlin style](https://warren-gates.github.io/better-metadata/kdoc/index.html)
