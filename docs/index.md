@@ -42,8 +42,8 @@ conn.close()
 ```
 
 ### Options
-There is a type alias that allow nullable ints for columns such as DECIMAL_DIGITS where the 
-DatabaseMetaData documentation indicates that nulls are returned. See the 
+There is a type alias that allow nullable ints for columns such as DECIMAL_DIGITS where the
+DatabaseMetaData documentation indicates that nulls are returned. See the
 [TypeDefinitions](src/main/kotlin/dev/warrengates/bettermetadata/TypeDefinitions.kt) file for
 details.
 
