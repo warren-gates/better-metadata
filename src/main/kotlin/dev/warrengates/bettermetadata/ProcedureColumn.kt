@@ -73,7 +73,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: PRECISION
      */
-    val precision: Int = rs.getInt("PRECISION")
+    val precision: MetadataInt = rs.getMetadataInt("PRECISION")
 
     /**
      * Length
@@ -94,7 +94,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: RADIX
      */
-    val radix: Int = rs.getShort("RADIX").toInt()
+    val radix: MetadataInt = rs.getMetadataInt("RADIX")
 
     /**
      * Nullable, converted to [ProcedureColumnNullable]
@@ -117,16 +117,12 @@ class ProcedureColumn(rs: ResultSet) {
      */
     val columnDefault: String? = rs.getString("COLUMN_DEF")
 
-    // following reserved for future use per https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getProcedureColumns(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
-//    val sqlDataType: Int = rs.getInt("SQL_DATA_TYPE")
-//    val sqlDatetimeSub: Int = rs.getInt("SQL_DATETIME_SUB")
-
     /**
      * Character octet length
      *
      * Source column: CHAR_OCTET_LENGTH
      */
-    val characterOctetLength: Int = rs.getInt("CHAR_OCTET_LENGTH")
+    val characterOctetLength: MetadataInt = rs.getMetadataInt("CHAR_OCTET_LENGTH")
 
     /**
      * Ordinal position

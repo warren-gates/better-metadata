@@ -71,7 +71,7 @@ class FunctionColumn(rs: ResultSet) {
      *
      * Source column: PRECISION
      */
-    val precision: Int = rs.getInt("PRECISION")
+    val precision: MetadataInt = rs.getMetadataInt("PRECISION")
 
     /**
      * Length
@@ -92,7 +92,7 @@ class FunctionColumn(rs: ResultSet) {
      *
      * Source column: RADIX
      */
-    val radix: Int = rs.getInt("RADIX")
+    val radix: MetadataInt = rs.getMetadataInt("RADIX")
 
     /**
      * Nullable, converted to [FunctionColumnNullable]
@@ -113,7 +113,7 @@ class FunctionColumn(rs: ResultSet) {
      *
      * Source column: CHAR_OCTET_LENGTH
      */
-    val characterOctetLength: Int = rs.getInt("CHAR_OCTET_LENGTH")
+    val characterOctetLength: MetadataInt = rs.getMetadataInt("CHAR_OCTET_LENGTH")
 
     /**
      * Ordinal position

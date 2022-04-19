@@ -42,7 +42,7 @@ class PseudoColumn(rs: ResultSet) {
     /**
      * Column size
      */
-    val columnSize: Int = rs.getInt("COLUMN_SIZE")
+    val columnSize: MetadataInt = rs.getMetadataInt("COLUMN_SIZE")
 
     /**
      * The number of fractional digits
@@ -52,7 +52,7 @@ class PseudoColumn(rs: ResultSet) {
     /**
      * Numeric precision radix
      */
-    val radix: Int = rs.getInt("NUM_PREC_RADIX")
+    val radix: MetadataInt = rs.getMetadataInt("NUM_PREC_RADIX")
 
     /**
      * Column usage, converted to [PseudoColumnUsage]
@@ -67,7 +67,7 @@ class PseudoColumn(rs: ResultSet) {
     /**
      * Character octet length
      */
-    val characterOctetLength: Int = rs.getInt("CHAR_OCTET_LENGTH")
+    val characterOctetLength: MetadataInt = rs.getMetadataInt("CHAR_OCTET_LENGTH")
 
     /**
      * Is nullable, converted to [IsNullable]

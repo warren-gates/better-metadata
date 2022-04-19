@@ -15,8 +15,6 @@ import java.sql.ResultSet
  * been left out of this class
  */
 class VersionColumn(rs: ResultSet) {
-    // unused
-//    val scope: Short = rs.getShort("SCOPE")
 
     /**
      * Column name
@@ -44,7 +42,7 @@ class VersionColumn(rs: ResultSet) {
      *
      * Source column: COLUMN_SIZE
      */
-    val columnSize: Int = rs.getInt("COLUMN_SIZE")
+    val columnSize: MetadataInt = rs.getMetadataInt("COLUMN_SIZE")
 
     /**
      * Buffer length

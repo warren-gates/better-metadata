@@ -164,9 +164,9 @@ class Table(private val metadata: DatabaseMetaData, rs: ResultSet) {
         val columns = getColumns(null)
 
         while (rs.next()) {
-            val columnName: String = rs.getString("column_name")
-            val keySeq: Int = rs.getInt("key_seq")
-            val pkName: String = rs.getString("pk_name")
+            val columnName: String = rs.getString("COLUMN_NAME")
+            val keySeq: Int = rs.getInt("KEY_SEQ")
+            val pkName: String = rs.getString("PK_NAME")
             val columnSequenceList = primaryKeyColumns.getOrPut(pkName) { mutableListOf() }
             val column = columns.find { it.name == columnName } ?: throw Exception("Column $columnName was not found.")
 

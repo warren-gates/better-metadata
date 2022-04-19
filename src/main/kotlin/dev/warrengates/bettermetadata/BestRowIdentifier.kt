@@ -54,10 +54,7 @@ class BestRowIdentifier(rs: ResultSet) {
      *
      * Source column: COLUMN_SIZE
      */
-    val columnSize: Int = rs.getInt("COLUMN_SIZE")
-
-    // unused
-//    val bufferLength: Int = rs.getInt("BUFFER_LENGTH")
+    val columnSize: MetadataInt = rs.getMetadataInt("COLUMN_SIZE")
 
     /**
      * The number of fractional digits

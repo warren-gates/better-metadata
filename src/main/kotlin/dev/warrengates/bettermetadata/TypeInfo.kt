@@ -34,7 +34,7 @@ class TypeInfo(rs: ResultSet) {
      *
      * Source column: PRECISION
      */
-    val precision: Int = rs.getInt("PRECISION")
+    val precision: MetadataInt = rs.getMetadataInt("PRECISION")
 
     /**
      * Literal prefix
@@ -120,14 +120,10 @@ class TypeInfo(rs: ResultSet) {
      */
     val maximumScale: Int = rs.getInt("MAXIMUM_SCALE")
 
-    // unused per https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getTypeInfo()
-//    val sqlDataType: Int = rs.getInt("SQL_DATA_TYPE")
-//    val sqlDatetimeSub: Int = rs.getInt("SQL_DATETIME_SUB")
-
     /**
      * Numeric precision radix
      *
      * Source column: NUM_PREC_RADIX
      */
-    val radix: Int = rs.getInt("NUM_PREC_RADIX")
+    val radix: MetadataInt = rs.getMetadataInt("NUM_PREC_RADIX")
 }

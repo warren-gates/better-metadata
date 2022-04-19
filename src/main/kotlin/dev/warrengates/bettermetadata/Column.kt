@@ -70,10 +70,7 @@ class Column(private val metadata: DatabaseMetaData, rs: ResultSet) {
      *
      * Source column: COLUMN_SIZE
      */
-    val columnSize: Int = rs.getInt("COLUMN_SIZE")
-
-    // unused
-//    val bufferLength: String? = rs.getString("BUFFER_LENGTH")
+    val columnSize: MetadataInt = rs.getMetadataInt("COLUMN_SIZE")
 
     /**
      * The number of fractional digits
@@ -110,16 +107,12 @@ class Column(private val metadata: DatabaseMetaData, rs: ResultSet) {
      */
     val columnDefault: String? = rs.getString("COLUMN_DEF")
 
-    // unused
-//    val sqlDataType: Int = rs.getInt("SQL_DATA_TYPE")
-//    val sqlDatetimeSub = rs.getInt("SQL_DATETIME_SUB")
-
     /**
      * Character octet length
      *
      * Source column: CHAR_OCTET_LENGTH
      */
-    val characterOctetLength: String? = rs.getString("CHAR_OCTET_LENGTH")
+    val characterOctetLength: MetadataInt = rs.getMetadataInt("CHAR_OCTET_LENGTH")
 
     /**
      * Ordinal position

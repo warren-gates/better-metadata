@@ -83,7 +83,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: NUM_PREC_RADIX
      */
-    val radix: Int = rs.getInt("NUM_PREC_RADIX")
+    val radix: MetadataInt = rs.getMetadataInt("NUM_PREC_RADIX")
 
     /**
      * Indicates whether attribute is nullable, converted to [AttributeNullable]
@@ -106,16 +106,12 @@ class Attribute(rs: ResultSet) {
      */
     val attributeDefault: String? = rs.getString("ATTR_DEF")
 
-    // unused
-//    val sqlDataType: Int? = rs.getInt("SQL_DATA_TYPE")
-//    val sqlDatetimeSub: Int? = rs.getInt("SQL_DATETIME_SUB")
-
     /**
      * For character types this represents the maximum number of bytes in the column
      *
      * Source column: CHAR_OCTET_LENGTH
      */
-    val characterOctetLength: Int = rs.getInt("CHAR_OCTET_LENGTH")
+    val characterOctetLength: MetadataInt = rs.getMetadataInt("CHAR_OCTET_LENGTH")
 
     /**
      * Index of the attribute in the [UserDefinedType] (starts at 1)
