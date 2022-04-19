@@ -8,24 +8,31 @@ package dev.warrengates.bettermetadata
 import java.sql.DatabaseMetaData
 
 /**
- * S q l state type
+ * SQL state type
  *
  * @property value
- * @constructor Create empty S q l state type
  */
 enum class SQLStateType(override val value: Int): IntegerEnum {
     /**
      * Sql
      *
-     * @constructor Create empty Sql
-     */// definition https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html
+     * Source value: [DatabaseMetaData.sqlStateSQL]
+     */
     SQL(DatabaseMetaData.sqlStateSQL),
+
+
+    /**
+     * Sql99, per documentation, this is for compatibility reasons, developer should use
+     * [XOpen] instead
+     *
+     * Source value: [DatabaseMetaData.sqlStateSQL99]
+     */
+    SQL99(DatabaseMetaData.sqlStateSQL99),
 
     /**
      * X open
      *
-     * @constructor Create empty X open
-     */// TODO: document this, see above link
-//    SQL99(DatabaseMetaData.sqlStateSQL99),
+     * Source value: [DatabaseMetaData.sqlStateXOpen]
+     */
     XOpen(DatabaseMetaData.sqlStateXOpen);
 }

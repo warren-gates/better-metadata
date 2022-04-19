@@ -11,30 +11,27 @@ import java.sql.DatabaseMetaData
  * Function column nullable
  *
  * @property value
- * @property text
- * @constructor Create empty Function column nullable
  */
-enum class FunctionColumnNullable(override val value: Int, private val text: String): IntegerEnum {
+enum class FunctionColumnNullable(override val value: Int): IntegerEnum {
     /**
      * No
      *
-     * @constructor Create empty No
-     */// definition https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html
-    NO(DatabaseMetaData.functionNoNulls,"NO"),
+     * Source value: [DatabaseMetaData.functionNoNulls]
+     */
+    NO(DatabaseMetaData.functionNoNulls),
 
     /**
      * Yes
      *
-     * @constructor Create empty Yes
+     * Source value: [DatabaseMetaData.functionNullable]
      */
-    YES(DatabaseMetaData.functionNullable, "YES"),
+    YES(DatabaseMetaData.functionNullable),
 
     /**
      * Unknown
      *
-     * @constructor Create empty Unknown
+     * Source value: [DatabaseMetaData.functionNullableUnknown]
      */
-    UNKNOWN(DatabaseMetaData.functionNullableUnknown, "");
+    UNKNOWN(DatabaseMetaData.functionNullableUnknown);
 
-    override fun toString(): String = text
 }

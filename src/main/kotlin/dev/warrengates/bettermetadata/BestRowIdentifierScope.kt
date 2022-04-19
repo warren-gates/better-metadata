@@ -10,23 +10,26 @@ import java.sql.DatabaseMetaData
 /**
  * Best row identifier scope
  *
- * [value] values taken from [java.sql.DatabaseMetaData.bestRowTemporary],
- * [java.sql.DatabaseMetaData.bestRowTransaction], and
- * [java.sql.DatabaseMetaData.bestRowSession]
  */
 enum class BestRowIdentifierScope(override val value: Int): IntegerEnum {
     /**
      * valid for remainder of current session
+     *
+     * Source value: [DatabaseMetaData.bestRowTemporary]
      */
     SESSION(DatabaseMetaData.bestRowSession),
 
     /**
      * valid while using row
+     *
+     * Source value: [DatabaseMetaData.bestRowTransaction]
      */
     TEMPORARY(DatabaseMetaData.bestRowTemporary),
 
     /**
      * valid for remainder of current transaction
+     *
+     * Source value: [DatabaseMetaData.bestRowSession]
      */
     TRANSACTION(DatabaseMetaData.bestRowTransaction);
 }

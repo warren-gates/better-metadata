@@ -17,21 +17,21 @@ enum class ForeignKeyInitialDeferrability(override val value: Int): IntegerEnum 
     /**
      * Deferred
      *
-     * @constructor Create empty Deferred
+     * Source value: [DatabaseMetaData.importedKeyInitiallyDeferred]
      */
     DEFERRED(DatabaseMetaData.importedKeyInitiallyDeferred),
 
     /**
      * Immediate
      *
-     * @constructor Create empty Immediate
+     * Source value: [DatabaseMetaData.importedKeyInitiallyImmediate]
      */
     IMMEDIATE(DatabaseMetaData.importedKeyInitiallyImmediate),
 
     /**
      * Not Deferrable
      *
-     * @constructor Create empty Not Deferrable
+     * Source value: [DatabaseMetaData.importedKeyNotDeferrable]
      */
     NOT_DEFERRABLE(DatabaseMetaData.importedKeyNotDeferrable);
 }

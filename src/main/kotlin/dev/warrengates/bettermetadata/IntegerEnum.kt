@@ -6,13 +6,12 @@
 package dev.warrengates.bettermetadata
 
 /**
- * Integer enum
+ * Integer enum, convenience interface for converting integer values to enums
  *
- * @constructor Create empty Integer enum
  */
 interface IntegerEnum {
     /**
-     * Type
+     * Value
      */
     val value: Int
 }

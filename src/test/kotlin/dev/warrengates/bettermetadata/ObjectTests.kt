@@ -1,6 +1,7 @@
 package dev.warrengates.bettermetadata
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
@@ -238,15 +239,15 @@ class ObjectTests : TestBase() {
             )
 
             testList.add(
-                getObjectCountTest("${table.name}: ExportedKeys",
-                    table.getExportedKeys(),
-                    metadata.getExportedKeys(table.catalog, table.schema, table.name))
+                dynamicTest("${table.name}: ExportedKeys")
+                { assertEquals(getResultSetSize(metadata.getExportedKeys(table.catalog, table.schema, table.name)),
+                    table.getExportedKeys().sumOf { it.keyColumns.size }) }
             )
 
             testList.add(
-                getObjectCountTest("${table.name}: ImportedKeys",
-                    table.getImportedKeys(),
-                    metadata.getImportedKeys(table.catalog, table.schema, table.name))
+                dynamicTest("${table.name}: ImportedKeys")
+                { assertEquals(getResultSetSize(metadata.getImportedKeys(table.catalog, table.schema, table.name)),
+                    table.getImportedKeys().sumOf { it.keyColumns.size }) }
             )
 
             testList.add(
@@ -274,9 +275,14 @@ class ObjectTests : TestBase() {
             )
 
             testList.add(
-                getObjectCountTest("${table.name}: PrimaryKeys",
-                    table.getPrimayKeys(),
-                    metadata.getPrimaryKeys(table.catalog, table.schema, table.name))
+                dynamicTest("${table.name}: PrimaryKey Count")
+                { assertTrue(table.getPrimaryKeys().size <= 1) }
+            )
+
+            testList.add(
+                dynamicTest("${table.name}: PrimaryKeys")
+                { assertEquals(getResultSetSize(metadata.getPrimaryKeys(table.catalog, table.schema, table.name)),
+                    table.getPrimaryKeys().sumOf { it.primaryKeyColumns.size }) }
             )
 
             testList.add(

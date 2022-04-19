@@ -11,48 +11,47 @@ import java.sql.DatabaseMetaData
  * Procedure column type
  *
  * @property value
- * @constructor Create empty Procedure column type
  */
 enum class ProcedureColumnType(override val value: Int): IntegerEnum {
     /**
      * In
      *
-     * @constructor Create empty In
+     * Source value: [DatabaseMetaData.procedureColumnIn]
      */
     IN(DatabaseMetaData.procedureColumnIn),
 
     /**
      * In Out
      *
-     * @constructor Create empty In Out
+     * Source value: [DatabaseMetaData.procedureColumnInOut]
      */
     IN_OUT(DatabaseMetaData.procedureColumnInOut),
 
     /**
      * Out
      *
-     * @constructor Create empty Out
+     * Source value: [DatabaseMetaData.procedureColumnOut]
      */
     OUT(DatabaseMetaData.procedureColumnOut),
 
     /**
      * Return
      *
-     * @constructor Create empty Return
+     * Source value: [DatabaseMetaData.procedureColumnReturn]
      */
     RETURN(DatabaseMetaData.procedureColumnReturn),
 
     /**
      * Result
      *
-     * @constructor Create empty Result
+     * Source value: [DatabaseMetaData.procedureColumnResult]
      */
     RESULT(DatabaseMetaData.procedureColumnResult),
 
     /**
      * Unknown
      *
-     * @constructor Create empty Unknown
+     * Source value: [DatabaseMetaData.procedureColumnUnknown]
      */
     UNKNOWN(DatabaseMetaData.procedureColumnUnknown);
 }

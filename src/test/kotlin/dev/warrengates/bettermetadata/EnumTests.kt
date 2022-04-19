@@ -113,7 +113,7 @@ class EnumTests {
             Arguments.of(DatabaseMetaData.typeNullableUnknown, TypeNullable.UNKNOWN.value),
 
             Arguments.of(DatabaseMetaData.typePredBasic, TypeSearchable.BASIC.value),
-            Arguments.of(DatabaseMetaData.typePredChar, TypeSearchable.CHARACTER.value),
+            Arguments.of(DatabaseMetaData.typePredChar, TypeSearchable.CHAR.value),
             Arguments.of(DatabaseMetaData.typePredNone, TypeSearchable.NONE.value),
             Arguments.of(DatabaseMetaData.typeSearchable, TypeSearchable.SEARCHABLE.value),
 
@@ -228,7 +228,7 @@ class EnumTests {
             Arguments.of(valueOf<TypeNullable>(DatabaseMetaData.typeNullableUnknown), TypeNullable.UNKNOWN),
 
             Arguments.of(valueOf<TypeSearchable>(DatabaseMetaData.typePredBasic), TypeSearchable.BASIC),
-            Arguments.of(valueOf<TypeSearchable>(DatabaseMetaData.typePredChar), TypeSearchable.CHARACTER),
+            Arguments.of(valueOf<TypeSearchable>(DatabaseMetaData.typePredChar), TypeSearchable.CHAR),
             Arguments.of(valueOf<TypeSearchable>(DatabaseMetaData.typePredNone), TypeSearchable.NONE),
             Arguments.of(valueOf<TypeSearchable>(DatabaseMetaData.typeSearchable), TypeSearchable.SEARCHABLE),
 

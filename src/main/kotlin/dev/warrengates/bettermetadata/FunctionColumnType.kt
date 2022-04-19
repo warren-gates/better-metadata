@@ -11,48 +11,47 @@ import java.sql.DatabaseMetaData
  * Function column type
  *
  * @property value
- * @constructor Create empty Function column type
  */
 enum class FunctionColumnType(override val value: Int): IntegerEnum {
     /**
      * In
      *
-     * @constructor Create empty In
+     * Source value: [DatabaseMetaData.functionColumnIn]
      */
     IN(DatabaseMetaData.functionColumnIn),
 
     /**
      * In Out
      *
-     * @constructor Create empty In Out
+     * Source value: [DatabaseMetaData.functionColumnInOut]
      */
     IN_OUT(DatabaseMetaData.functionColumnInOut),
 
     /**
      * Out
      *
-     * @constructor Create empty Out
+     * Source value: [DatabaseMetaData.functionColumnOut]
      */
     OUT(DatabaseMetaData.functionColumnOut),
 
     /**
      * Result
      *
-     * @constructor Create empty Result
+     * Source value: [DatabaseMetaData.functionColumnResult]
      */
     RESULT(DatabaseMetaData.functionColumnResult),
 
     /**
      * Return
      *
-     * @constructor Create empty Return
-     */// TODO: doublecheck this column type
+     * Source value: [DatabaseMetaData.functionReturn]
+     */
     RETURN(DatabaseMetaData.functionReturn),
 
     /**
      * Unknown
      *
-     * @constructor Create empty Unknown
+     * Source value: [DatabaseMetaData.functionColumnUnknown]
      */
     UNKNOWN(DatabaseMetaData.functionColumnUnknown);
 }

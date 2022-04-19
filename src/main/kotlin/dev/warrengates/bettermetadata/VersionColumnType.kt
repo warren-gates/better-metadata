@@ -11,27 +11,26 @@ import java.sql.DatabaseMetaData
  * Version column type
  *
  * @property value
- * @constructor Create empty Version column type
  */
 enum class VersionColumnType(override val value: Int): IntegerEnum {
     /**
      * Is Pseudo Column
      *
-     * @constructor Create empty Is Pseudo Column
+     * Source value: [DatabaseMetaData.versionColumnPseudo]
      */
     IS_PSEUDO_COLUMN(DatabaseMetaData.versionColumnPseudo),
 
     /**
      * Not Pseudo Column
      *
-     * @constructor Create empty Not Pseudo Column
+     * Source value: [DatabaseMetaData.versionColumnNotPseudo]
      */
     NOT_PSEUDO_COLUMN(DatabaseMetaData.versionColumnNotPseudo),
 
     /**
      * Unknown
      *
-     * @constructor Create empty Unknown
+     * Source value: [DatabaseMetaData.versionColumnUnknown]
      */
     UNKNOWN(DatabaseMetaData.versionColumnUnknown);
 }

@@ -11,27 +11,26 @@ import java.sql.DatabaseMetaData
  * Function return type
  *
  * @property value
- * @constructor Create empty Function return type
  */
 enum class FunctionReturnType(override val value: Int): IntegerEnum {
     /**
      * No Table
      *
-     * @constructor Create empty No Table
+     * Source value: [DatabaseMetaData.functionNoTable]
      */
     NO_TABLE(DatabaseMetaData.functionNoTable),
 
     /**
      * Table
      *
-     * @constructor Create empty Table
+     * Source value: [DatabaseMetaData.functionReturnsTable]
      */
     TABLE(DatabaseMetaData.functionReturnsTable),
 
     /**
      * Unknown
      *
-     * @constructor Create empty Unknown
+     * Source value: [DatabaseMetaData.functionResultUnknown]
      */
     UNKNOWN(DatabaseMetaData.functionResultUnknown);
 }

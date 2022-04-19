@@ -17,21 +17,21 @@ enum class ProcedureReturnType(override val value: Int): IntegerEnum {
     /**
      * No Result
      *
-     * @constructor Create empty No Result
+     * Source value: [DatabaseMetaData.procedureNoResult]
      */
     NO_RESULT(DatabaseMetaData.procedureNoResult),
 
     /**
      * Returns Result
      *
-     * @constructor Create empty Returns Result
+     * Source value: [DatabaseMetaData.procedureReturnsResult]
      */
     RETURNS_RESULT(DatabaseMetaData.procedureReturnsResult),
 
     /**
      * Unknown
      *
-     * @constructor Create empty Unknown
+     * Source value: [DatabaseMetaData.procedureResultUnknown]
      */
     UNKNOWN(DatabaseMetaData.procedureResultUnknown);
 }

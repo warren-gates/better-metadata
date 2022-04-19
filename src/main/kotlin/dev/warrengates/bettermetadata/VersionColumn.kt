@@ -9,48 +9,61 @@ import java.sql.JDBCType
 import java.sql.ResultSet
 
 /**
- * Version column
+ * Wrapper for results of [getVersionColumns](https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getVersionColumns(java.lang.String,java.lang.String,java.lang.String))
  *
- * @constructor
- *
- * @param rs
+ * Note that per the documentation SCOPE is unused and has
+ * been left out of this class
  */
 class VersionColumn(rs: ResultSet) {
-    // scope is not used per https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getVersionColumns(java.lang.String,java.lang.String,java.lang.String)
+    // unused
 //    val scope: Short = rs.getShort("SCOPE")
 
     /**
      * Column name
+     *
+     * Source column: COLUMN_NAME
      */
     val columnName: String = rs.getString("COLUMN_NAME")
 
     /**
-     * SQL type from [java.sql.Types]
+     * SQL type, converted to [JDBCType]
+     *
+     * Source column: DATA_TYPE
      */
     val dataType: JDBCType = rs.getJDBCType("DATA_TYPE")
 
     /**
      * Type name
+     *
+     * Source column: TYPE_NAME
      */
     val typeName: String? = rs.getString("TYPE_NAME")
 
     /**
      * Column size
+     *
+     * Source column: COLUMN_SIZE
      */
     val columnSize: Int = rs.getInt("COLUMN_SIZE")
 
     /**
      * Buffer length
+     *
+     * Source column: BUFFER_LENGTH
      */
     val bufferLength: Int = rs.getInt("BUFFER_LENGTH")
 
     /**
-     * The number of fractional digits, null is returned when decimalDigits is not applicable
+     * The number of fractional digits
+     *
+     * Source column: DECIMAL_DIGITS
      */
-    val decimalDigits: Int? = rs.getObject("DECIMAL_DIGITS", Int::class.java)
+    val decimalDigits: MetadataInt = rs.getMetadataInt("DECIMAL_DIGITS")
 
     /**
-     * Pseudo column
+     * Pseudo column, converted to [VersionColumnType]
+     *
+     * Source column: PSEUDO_COLUMN
      */
     val pseudoColumn: VersionColumnType = rs.getIntegerEnum("PSEUDO_COLUMN")
 }

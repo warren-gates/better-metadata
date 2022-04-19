@@ -17,35 +17,35 @@ enum class ForeignKeyUpdateRule(override val value: Int): IntegerEnum {
     /**
      * No Action
      *
-     * @constructor Create empty No Action
+     * Source value: [DatabaseMetaData.importedKeyNoAction]
      */
     NO_ACTION(DatabaseMetaData.importedKeyNoAction),
 
     /**
      * Cascade
      *
-     * @constructor Create empty Cascade
+     * Source value: [DatabaseMetaData.importedKeyCascade]
      */
     CASCADE(DatabaseMetaData.importedKeyCascade),
 
     /**
      * Restrict
      *
-     * @constructor Create empty Restrict
+     * Source value: [DatabaseMetaData.importedKeyRestrict]
      */
     RESTRICT(DatabaseMetaData.importedKeyRestrict),
 
     /**
      * Set Default
      *
-     * @constructor Create empty Set Default
+     * Source value: [DatabaseMetaData.importedKeySetDefault]
      */
     SET_DEFAULT(DatabaseMetaData.importedKeySetDefault),
 
     /**
      * Set Null
      *
-     * @constructor Create empty Set Null
+     * Source value: [DatabaseMetaData.importedKeySetNull]
      */
     SET_NULL(DatabaseMetaData.importedKeySetNull);
 }

@@ -12,57 +12,56 @@ import java.sql.RowIdLifetime
 
 
 /**
- * Database provides a wrapper around [DatabaseMetaData]. Where [DatabaseMetaData]
- * returns [java.sql.ResultSet]s this wrapper returns a [List] of appropriate objects
+ * Provides a wrapper around [DatabaseMetaData](https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html).
  *
- * @property metaData the wrapped [DatabaseMetaData]
- * @property defaultCatalog a default catalog filter used in methods such as [getTables]
- * @property defaultSchema
+ * @property metadata the wrapped [DatabaseMetaData]
+ * @property defaultCatalog a default catalog filter used in methods where a catalog can be specified
+ * @property defaultSchema a default schema filter used in methods where a schema can be specified
  * @constructor Create empty Database
  */
 @Suppress("unused", "MemberVisibilityCanBePrivate")
 class Database @JvmOverloads constructor(
-    private val metaData: DatabaseMetaData,
+    private val metadata: DatabaseMetaData,
     val defaultCatalog: String? = null,
     val defaultSchema: String? = null,
 ) {
 
-    private val separator = ","
+    private val separator: String = ","
 
     /**
      * All procedures are callable
      *
      * @return
-     */// https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html
-    fun allProceduresAreCallable(): Boolean = metaData.allProceduresAreCallable()
+     */
+    fun allProceduresAreCallable(): Boolean = metadata.allProceduresAreCallable()
 
     /**
      * All tables are selectable
      *
      * @return
      */
-    fun allTablesAreSelectable(): Boolean = metaData.allTablesAreSelectable()
+    fun allTablesAreSelectable(): Boolean = metadata.allTablesAreSelectable()
 
     /**
      * Auto commit failure closes all result sets
      *
      * @return
      */
-    fun autoCommitFailureClosesAllResultSets(): Boolean = metaData.autoCommitFailureClosesAllResultSets()
+    fun autoCommitFailureClosesAllResultSets(): Boolean = metadata.autoCommitFailureClosesAllResultSets()
 
     /**
      * Data definition causes transaction commit
      *
      * @return
      */
-    fun dataDefinitionCausesTransactionCommit(): Boolean = metaData.dataDefinitionCausesTransactionCommit()
+    fun dataDefinitionCausesTransactionCommit(): Boolean = metadata.dataDefinitionCausesTransactionCommit()
 
     /**
      * Data definition ignored in transactions
      *
      * @return
      */
-    fun dataDefinitionIgnoredInTransactions(): Boolean = metaData.dataDefinitionIgnoredInTransactions()
+    fun dataDefinitionIgnoredInTransactions(): Boolean = metadata.dataDefinitionIgnoredInTransactions()
 
     /**
      * Deletes are detected
@@ -70,131 +69,161 @@ class Database @JvmOverloads constructor(
      * @param resultSetType
      * @return
      */
-    fun deletesAreDetected(resultSetType: ResultSetType): Boolean = metaData.deletesAreDetected(resultSetType.value)
+    fun deletesAreDetected(resultSetType: ResultSetType): Boolean = metadata.deletesAreDetected(resultSetType.value)
 
     /**
      * Does max row size include blobs
      *
      * @return
      */
-    fun doesMaxRowSizeIncludeBlobs(): Boolean = metaData.doesMaxRowSizeIncludeBlobs()
+    fun doesMaxRowSizeIncludeBlobs(): Boolean = metadata.doesMaxRowSizeIncludeBlobs()
 
     /**
      * Generated key always returned
      *
      * @return
      */
-    fun generatedKeyAlwaysReturned(): Boolean = metaData.generatedKeyAlwaysReturned()
+    fun generatedKeyAlwaysReturned(): Boolean = metadata.generatedKeyAlwaysReturned()
 
     /**
-     * Get catalogs
+     * Get list of catalogs
      *
      * @return
      */
-    fun getCatalogs(): List<String> = getIterableFromRs(metaData.catalogs) { it.getString("TABLE_CAT") }
+    fun getCatalogs(): List<String> = getIterableFromRs(metadata.catalogs) { it.getString("TABLE_CAT") }
 
     /**
      * Get catalog separator
      *
      * @return
      */
-    fun getCatalogSeparator(): String = metaData.catalogSeparator
+    fun getCatalogSeparator(): String = metadata.catalogSeparator
 
     /**
      * Get catalog term
      *
      * @return
      */
-    fun getCatalogTerm(): String = metaData.catalogTerm
+    fun getCatalogTerm(): String = metadata.catalogTerm
 
     /**
-     * Get client info properties
+     * Get client info properties, converted to [ClientInfoProperties]
      *
      * @return
      */
     fun getClientInfoProperties(): List<ClientInfoProperties> =
-        getIterableFromRs(metaData.clientInfoProperties) { ClientInfoProperties(it) }
+        getIterableFromRs(metadata.clientInfoProperties) { ClientInfoProperties(it) }
 
     /**
      * Get connection
      *
      * @return
      */
-    fun getConnection(): Connection = metaData.connection
+    fun getConnection(): Connection = metadata.connection
+
+
+    /**
+     * Get cross reference, converted to [Key]
+     *
+     * if not specified, [parentCatalog] and [foreignCatalog] default to [defaultCatalog],
+     * and [parentSchema] and [foreignSchema] default to [defaultSchema]
+     *
+     * @param parentCatalog
+     * @param parentSchema
+     * @param parentTable
+     * @param foreignCatalog
+     * @param foreignSchema
+     * @param foreignTable
+     * @return
+     */
+    @JvmOverloads
+    fun getCrossReference(parentCatalog: String? = defaultCatalog,
+                          parentSchema: String? = defaultSchema,
+                          parentTable: String,
+                          foreignCatalog: String? = defaultCatalog,
+                          foreignSchema: String? = defaultSchema,
+                          foreignTable: String): List<Key> {
+        return getKeys(
+            metadata,
+            metadata.getCrossReference(parentCatalog, parentSchema, parentTable, foreignCatalog, foreignSchema, foreignTable),
+            KeyDiscriminatorColumns("FKTABLE_CAT", "FKTABLE_SCHEM", "FKTABLE_NAME")
+        )
+    }
 
     /**
      * Get database major version
      *
      * @return
      */
-    fun getDatabaseMajorVersion(): Int = metaData.databaseMajorVersion
+    fun getDatabaseMajorVersion(): Int = metadata.databaseMajorVersion
 
     /**
      * Get database minor version
      *
      * @return
      */
-    fun getDatabaseMinorVersion(): Int = metaData.databaseMinorVersion
+    fun getDatabaseMinorVersion(): Int = metadata.databaseMinorVersion
 
     /**
      * Get database product name
      *
      * @return
      */
-    fun getDatabaseProductName(): String = metaData.databaseProductName
+    fun getDatabaseProductName(): String = metadata.databaseProductName
 
     /**
      * Get database product version
      *
      * @return
      */
-    fun getDatabaseProductVersion(): String = metaData.databaseProductVersion
+    fun getDatabaseProductVersion(): String = metadata.databaseProductVersion
 
     /**
-     * Get default transaction isolation
+     * Get default transaction isolation, converted to [TransactionIsolation]
      *
      * @return
      */
-    fun getDefaultTransactionIsolation(): TransactionIsolation = valueOf(metaData.defaultTransactionIsolation)
+    fun getDefaultTransactionIsolation(): TransactionIsolation = valueOf(metadata.defaultTransactionIsolation)
 
     /**
      * Get driver name
      *
      * @return
      */
-    fun getDriverName(): String = metaData.driverName
+    fun getDriverName(): String = metadata.driverName
 
     /**
      * Get driver version
      *
      * @return
      */
-    fun getDriverVersion(): String = metaData.driverVersion
+    fun getDriverVersion(): String = metadata.driverVersion
 
     /**
      * Get driver major version
      *
      * @return
      */
-    fun getDriverMajorVersion(): Int = metaData.driverMajorVersion
+    fun getDriverMajorVersion(): Int = metadata.driverMajorVersion
 
     /**
      * Get driver minor version
      *
      * @return
      */
-    fun getDriverMinorVersion(): Int = metaData.driverMinorVersion
+    fun getDriverMinorVersion(): Int = metadata.driverMinorVersion
 
     /**
      * Get extra name characters
      *
      * @return
      */
-    fun getExtraNameCharacters(): String = metaData.extraNameCharacters
+    fun getExtraNameCharacters(): String = metadata.extraNameCharacters
 
     /**
      * Gets functions using the [catalog], [schemaPattern], and [namePattern]
-     * to filter results
+     * to filter results. If not specified, [catalog] defaults to [defaultCatalog]
+     * and [schemaPattern] defaults to [defaultSchema]
      *
      * @param catalog
      * @param schemaPattern
@@ -206,7 +235,7 @@ class Database @JvmOverloads constructor(
                      schemaPattern: String? = defaultSchema,
                      namePattern: String? = null): List<Function> {
         return getIterableFromRs(
-            metaData, metaData.getFunctions(catalog, schemaPattern, namePattern)
+            metadata, metadata.getFunctions(catalog, schemaPattern, namePattern)
         ) { md, r -> Function(md, r) }
     }
 
@@ -228,178 +257,179 @@ class Database @JvmOverloads constructor(
      *
      * @return
      */
-    fun getIdentifierQuoteString(): String = metaData.identifierQuoteString
+    fun getIdentifierQuoteString(): String = metadata.identifierQuoteString
 
     /**
-     * Get j d b c major version
+     * Get JDBC major version
      *
      * @return
      */
-    fun getJDBCMajorVersion(): Int = metaData.jdbcMajorVersion
+    fun getJDBCMajorVersion(): Int = metadata.jdbcMajorVersion
 
     /**
-     * Get j d b c minor version
+     * Get JDBC minor version
      *
      * @return
      */
-    fun getJDBCMinorVersion(): Int = metaData.jdbcMinorVersion
+    fun getJDBCMinorVersion(): Int = metadata.jdbcMinorVersion
 
     /**
      * Get max binary literal length
      *
      * @return
      */
-    fun getMaxBinaryLiteralLength(): Int = metaData.maxBinaryLiteralLength
+    fun getMaxBinaryLiteralLength(): Int = metadata.maxBinaryLiteralLength
 
     /**
      * Get max char literal length
      *
      * @return
      */
-    fun getMaxCharLiteralLength(): Int = metaData.maxCharLiteralLength
+    fun getMaxCharLiteralLength(): Int = metadata.maxCharLiteralLength
 
     /**
      * Get max column name length
      *
      * @return
      */
-    fun getMaxColumnNameLength(): Int = metaData.maxColumnNameLength
+    fun getMaxColumnNameLength(): Int = metadata.maxColumnNameLength
 
     /**
      * Get max columns in group by
      *
      * @return
      */
-    fun getMaxColumnsInGroupBy(): Int = metaData.maxColumnsInGroupBy
+    fun getMaxColumnsInGroupBy(): Int = metadata.maxColumnsInGroupBy
 
     /**
      * Get max columns in index
      *
      * @return
      */
-    fun getMaxColumnsInIndex(): Int = metaData.maxColumnsInIndex
+    fun getMaxColumnsInIndex(): Int = metadata.maxColumnsInIndex
 
     /**
      * Get max columns in order by
      *
      * @return
      */
-    fun getMaxColumnsInOrderBy(): Int = metaData.maxColumnsInOrderBy
+    fun getMaxColumnsInOrderBy(): Int = metadata.maxColumnsInOrderBy
 
     /**
      * Get max columns in select
      *
      * @return
      */
-    fun getMaxColumnsInSelect(): Int = metaData.maxColumnsInSelect
+    fun getMaxColumnsInSelect(): Int = metadata.maxColumnsInSelect
 
     /**
      * Get max columns in table
      *
      * @return
      */
-    fun getMaxColumnsInTable(): Int = metaData.maxColumnsInTable
+    fun getMaxColumnsInTable(): Int = metadata.maxColumnsInTable
 
     /**
      * Get max connections
      *
      * @return
      */
-    fun getMaxConnections(): Int = metaData.maxConnections
+    fun getMaxConnections(): Int = metadata.maxConnections
 
     /**
      * Get max cursor name length
      *
      * @return
      */
-    fun getMaxCursorNameLength(): Int = metaData.maxCursorNameLength
+    fun getMaxCursorNameLength(): Int = metadata.maxCursorNameLength
 
     /**
      * Get max index length
      *
      * @return
      */
-    fun getMaxIndexLength(): Int = metaData.maxIndexLength
+    fun getMaxIndexLength(): Int = metadata.maxIndexLength
 
     /**
      * Get max schema name length
      *
      * @return
      */
-    fun getMaxSchemaNameLength(): Int = metaData.maxSchemaNameLength
+    fun getMaxSchemaNameLength(): Int = metadata.maxSchemaNameLength
 
     /**
      * Get max procedure name length
      *
      * @return
      */
-    fun getMaxProcedureNameLength(): Int = metaData.maxProcedureNameLength
+    fun getMaxProcedureNameLength(): Int = metadata.maxProcedureNameLength
 
     /**
      * Get max catalog name length
      *
      * @return
      */
-    fun getMaxCatalogNameLength(): Int = metaData.maxCatalogNameLength
+    fun getMaxCatalogNameLength(): Int = metadata.maxCatalogNameLength
 
     /**
      * Get max row size
      *
      * @return
      */
-    fun getMaxRowSize(): Int = metaData.maxRowSize
+    fun getMaxRowSize(): Int = metadata.maxRowSize
 
     /**
      * Get max statement length
      *
      * @return
      */
-    fun getMaxStatementLength(): Int = metaData.maxStatementLength
+    fun getMaxStatementLength(): Int = metadata.maxStatementLength
 
     /**
      * Get max statements
      *
      * @return
      */
-    fun getMaxStatements(): Int = metaData.maxStatements
+    fun getMaxStatements(): Int = metadata.maxStatements
 
     /**
      * Get max table name length
      *
      * @return
      */
-    fun getMaxTableNameLength(): Int = metaData.maxTableNameLength
+    fun getMaxTableNameLength(): Int = metadata.maxTableNameLength
 
     /**
      * Get max tables in select
      *
      * @return
      */
-    fun getMaxTablesInSelect(): Int = metaData.maxTablesInSelect
+    fun getMaxTablesInSelect(): Int = metadata.maxTablesInSelect
 
     /**
      * Get max username length
      *
      * @return
      */
-    fun getMaxUserNameLength(): Int = metaData.maxUserNameLength
+    fun getMaxUserNameLength(): Int = metadata.maxUserNameLength
 
     /**
      * Get max logical lob size
      *
      * @return
      */
-    fun getMaxLogicalLobSize(): Long = metaData.maxLogicalLobSize
+    fun getMaxLogicalLobSize(): Long = metadata.maxLogicalLobSize
 
     /**
-     * Get numeric functions
+     * Get numeric function names
      *
      * @return
      */
-    fun getNumericFunctions(): List<String> = metaData.numericFunctions.split(separator)
+    fun getNumericFunctions(): List<String> = metadata.numericFunctions.split(separator)
 
     /**
-     * Get procedures
+     * Get procedures. If not specified, [catalog] defaults to [defaultCatalog]
+     * and [schemaPattern] defaults to [defaultSchema]
      *
      * @param catalog
      * @param schemaPattern
@@ -411,7 +441,7 @@ class Database @JvmOverloads constructor(
                       schemaPattern: String? = defaultSchema,
                       namePattern: String? = null): List<Procedure> {
         return getIterableFromRs(
-            metaData, metaData.getProcedures(catalog, schemaPattern, namePattern)
+            metadata, metadata.getProcedures(catalog, schemaPattern, namePattern)
         ) { m, rs -> Procedure(m, rs) }
     }
 
@@ -434,66 +464,67 @@ class Database @JvmOverloads constructor(
      *
      * @return
      */
-    fun getProcedureTerm(): String = metaData.procedureTerm
+    fun getProcedureTerm(): String = metadata.procedureTerm
 
     /**
      * Get result set holdability
      *
      * @return
      */
-    fun getResultSetHoldability(): ResultSetHoldability = valueOf(metaData.resultSetHoldability)
+    fun getResultSetHoldability(): ResultSetHoldability = valueOf(metadata.resultSetHoldability)
 
     /**
      * Get row id lifetime
      *
      * @return
      */
-    fun getRowIdLifetime(): RowIdLifetime = metaData.rowIdLifetime
+    fun getRowIdLifetime(): RowIdLifetime = metadata.rowIdLifetime
 
     /**
      * Get schemas
      *
      * @return
      */
-    fun getSchemas(): List<Schema> = getIterableFromRs(metaData.schemas) { Schema(it) }
+    fun getSchemas(): List<Schema> = getIterableFromRs(metadata.schemas) { Schema(it) }
 
     /**
      * Get schema term
      *
      * @return
      */
-    fun getSchemaTerm(): String = metaData.schemaTerm
+    fun getSchemaTerm(): String = metadata.schemaTerm
 
     /**
      * Get search string escape
      *
      * @return
      */
-    fun getSearchStringEscape(): String = metaData.searchStringEscape
+    fun getSearchStringEscape(): String = metadata.searchStringEscape
 
     /**
-     * Get s q l keywords
+     * Get SQL keywords
      *
      * @return
      */
-    fun getSQLKeywords(): List<String> = metaData.sqlKeywords.split(separator)
+    fun getSQLKeywords(): List<String> = metadata.sqlKeywords.split(separator)
 
     /**
-     * Get s q l state type
+     * Get SQL state type
      *
      * @return
      */
-    fun getSQLStateType(): SQLStateType = valueOf(metaData.sqlStateType)
+    fun getSQLStateType(): SQLStateType = valueOf(metadata.sqlStateType)
 
     /**
-     * Get string functions
+     * Get string function names
      *
      * @return
      */
-    fun getStringFunctions(): List<String> = metaData.stringFunctions.split(separator)
+    fun getStringFunctions(): List<String> = metadata.stringFunctions.split(separator)
 
     /**
-     * Get super tables
+     * Get super tables. If not specified, [catalog] defaults to [defaultCatalog]
+     * and [schemaPattern] defaults to [defaultSchema]
      *
      * @param catalog
      * @param schemaPattern
@@ -505,7 +536,7 @@ class Database @JvmOverloads constructor(
                        schemaPattern: String? = defaultSchema,
                        tableNamePattern: String? = null): List<Table> {
         return getIterableFromRs(
-            metaData, metaData.getSuperTables(catalog, schemaPattern, tableNamePattern)
+            metadata, metadata.getSuperTables(catalog, schemaPattern, tableNamePattern)
         ) { m, rs -> Table(m, rs) }
     }
 
@@ -523,7 +554,8 @@ class Database @JvmOverloads constructor(
     }
 
     /**
-     * Get super types
+     * Get super types. If not specified, [catalog] defaults to [defaultCatalog]
+     * and [schemaPattern] defaults to [defaultSchema]
      *
      * @param catalog
      * @param schemaPattern
@@ -535,7 +567,7 @@ class Database @JvmOverloads constructor(
                       schemaPattern: String? = defaultSchema,
                       typeNamePattern: String? = null): List<SuperType> {
         return getIterableFromRs(
-            metaData.getSuperTypes(catalog, schemaPattern, typeNamePattern)
+            metadata.getSuperTypes(catalog, schemaPattern, typeNamePattern)
         ) { SuperType(it) }
     }
 
@@ -553,14 +585,15 @@ class Database @JvmOverloads constructor(
         return getSuperTypes(schema.catalog, schema.name, typeNamePattern)
     }
     /**
-     * Get system functions
+     * Get system function names
      *
      * @return
      */
-    fun getSystemFunctions(): List<String> = metaData.systemFunctions.split(separator)
+    fun getSystemFunctions(): List<String> = metadata.systemFunctions.split(separator)
 
     /**
-     * Get tables
+     * Get tables. If not specified, [catalog] defaults to [defaultCatalog]
+     * and [schemaPattern] defaults to [defaultSchema]
      *
      * @param catalog
      * @param schemaPattern
@@ -576,7 +609,7 @@ class Database @JvmOverloads constructor(
         types: Array<String>? = null,
     ): List<Table> {
         return getIterableFromRs(
-            metaData, metaData.getTables(catalog, schemaPattern, tableNamePattern, types)
+            metadata, metadata.getTables(catalog, schemaPattern, tableNamePattern, types)
         ) { md, r -> Table(md, r) }
     }
 
@@ -605,16 +638,16 @@ class Database @JvmOverloads constructor(
      */
     fun getTableTypes(): List<String> {
         return getIterableFromRs(
-            metaData.tableTypes
+            metadata.tableTypes
         ) { it.getString("TABLE_TYPE") }
     }
 
     /**
-     * Get time date functions
+     * Get time date function names
      *
      * @return
      */
-    fun getTimeDateFunctions(): List<String> = metaData.timeDateFunctions.split(separator)
+    fun getTimeDateFunctions(): List<String> = metadata.timeDateFunctions.split(separator)
 
 
     /**
@@ -623,18 +656,19 @@ class Database @JvmOverloads constructor(
      * @return
      */
     fun getTypeInfo(): List<TypeInfo> {
-        return getIterableFromRs(metaData.typeInfo) { TypeInfo(it) }
+        return getIterableFromRs(metadata.typeInfo) { TypeInfo(it) }
     }
 
     /**
-     * Get u r l
+     * Get URL for database connection
      *
      * @return
      */
-    fun getURL(): String = metaData.url
+    fun getURL(): String = metadata.url
 
     /**
-     * Get user defined types
+     * Get user defined types. If not specified, [catalog] defaults to [defaultCatalog]
+     * and [schemaPattern] defaults to [defaultSchema]
      *
      * @param catalog
      * @param schemaPattern
@@ -650,7 +684,7 @@ class Database @JvmOverloads constructor(
         types: Array<JDBCType>? = null,
     ): List<UserDefinedType> {
         return getIterableFromRs(
-            metaData, metaData.getUDTs(catalog, schemaPattern, namePattern, types?.map { it.vendorTypeNumber }?.toIntArray())
+            metadata, metadata.getUDTs(catalog, schemaPattern, namePattern, types?.map { it.vendorTypeNumber }?.toIntArray())
         ) { m, x -> UserDefinedType(m, x) }
     }
 
@@ -677,7 +711,7 @@ class Database @JvmOverloads constructor(
      *
      * @return
      */
-    fun getUserName(): String = metaData.userName
+    fun getUserName(): String = metadata.userName
 
     /**
      * Inserts are detected
@@ -685,63 +719,63 @@ class Database @JvmOverloads constructor(
      * @param resultSetType
      * @return
      */
-    fun insertsAreDetected(resultSetType: ResultSetType): Boolean = metaData.insertsAreDetected(resultSetType.value)
+    fun insertsAreDetected(resultSetType: ResultSetType): Boolean = metadata.insertsAreDetected(resultSetType.value)
 
     /**
      * Is catalog at start
      *
      * @return
      */
-    fun isCatalogAtStart(): Boolean = metaData.isCatalogAtStart
+    fun isCatalogAtStart(): Boolean = metadata.isCatalogAtStart
 
     /**
      * Is read only
      *
      * @return
      */
-    fun isReadOnly(): Boolean = metaData.isReadOnly
+    fun isReadOnly(): Boolean = metadata.isReadOnly
 
     /**
      * Locators update copy
      *
      * @return
      */
-    fun locatorsUpdateCopy(): Boolean = metaData.locatorsUpdateCopy()
+    fun locatorsUpdateCopy(): Boolean = metadata.locatorsUpdateCopy()
 
     /**
      * Nulls are sorted at end
      *
      * @return
      */
-    fun nullsAreSortedAtEnd(): Boolean = metaData.nullsAreSortedAtEnd()
+    fun nullsAreSortedAtEnd(): Boolean = metadata.nullsAreSortedAtEnd()
 
     /**
      * Nulls are sorted at start
      *
      * @return
      */
-    fun nullsAreSortedAtStart(): Boolean = metaData.nullsAreSortedAtStart()
+    fun nullsAreSortedAtStart(): Boolean = metadata.nullsAreSortedAtStart()
 
     /**
      * Nulls are sorted high
      *
      * @return
      */
-    fun nullsAreSortedHigh(): Boolean = metaData.nullsAreSortedHigh()
+    fun nullsAreSortedHigh(): Boolean = metadata.nullsAreSortedHigh()
 
     /**
      * Nulls are sorted low
      *
      * @return
      */
-    fun nullsAreSortedLow(): Boolean = metaData.nullsAreSortedLow()
+    fun nullsAreSortedLow(): Boolean = metadata.nullsAreSortedLow()
 
     /**
      * Null plus non null is null
      *
      * @return
      */
-    fun nullPlusNonNullIsNull(): Boolean = metaData.nullPlusNonNullIsNull()
+    fun nullPlusNonNullIsNull(): Boolean = metadata.nullPlusNonNullIsNull()
 
     /**
      * Others updates are visible
@@ -750,7 +784,7 @@ class Database @JvmOverloads constructor(
      * @return
      */
     fun othersUpdatesAreVisible(resultSetType: ResultSetType): Boolean =
-        metaData.othersUpdatesAreVisible(resultSetType.value)
+        metadata.othersUpdatesAreVisible(resultSetType.value)
 
     /**
      * Others deletes are visible
@@ -759,7 +793,7 @@ class Database @JvmOverloads constructor(
      * @return
      */
     fun othersDeletesAreVisible(resultSetType: ResultSetType): Boolean =
-        metaData.othersDeletesAreVisible(resultSetType.value)
+        metadata.othersDeletesAreVisible(resultSetType.value)
 
     /**
      * Others inserts are visible
@@ -768,7 +802,7 @@ class Database @JvmOverloads constructor(
      * @return
      */
     fun othersInsertsAreVisible(resultSetType: ResultSetType): Boolean =
-        metaData.othersInsertsAreVisible(resultSetType.value)
+        metadata.othersInsertsAreVisible(resultSetType.value)
 
     /**
      * Own updates are visible
@@ -776,7 +810,7 @@ class Database @JvmOverloads constructor(
      * @param resultSetType
      * @return
      */
-    fun ownUpdatesAreVisible(resultSetType: ResultSetType): Boolean = metaData.ownUpdatesAreVisible(resultSetType.value)
+    fun ownUpdatesAreVisible(resultSetType: ResultSetType): Boolean = metadata.ownUpdatesAreVisible(resultSetType.value)
 
     /**
      * Own deletes are visible
@@ -784,7 +818,7 @@ class Database @JvmOverloads constructor(
      * @param resultSetType
      * @return
      */
-    fun ownDeletesAreVisible(resultSetType: ResultSetType): Boolean = metaData.ownDeletesAreVisible(resultSetType.value)
+    fun ownDeletesAreVisible(resultSetType: ResultSetType): Boolean = metadata.ownDeletesAreVisible(resultSetType.value)
 
     /**
      * Own inserts are visible
@@ -792,140 +826,140 @@ class Database @JvmOverloads constructor(
      * @param resultSetType
      * @return
      */
-    fun ownInsertsAreVisible(resultSetType: ResultSetType): Boolean = metaData.ownInsertsAreVisible(resultSetType.value)
+    fun ownInsertsAreVisible(resultSetType: ResultSetType): Boolean = metadata.ownInsertsAreVisible(resultSetType.value)
 
     /**
      * Stores upper case identifiers
      *
      * @return
      */
-    fun storesUpperCaseIdentifiers(): Boolean = metaData.storesUpperCaseIdentifiers()
+    fun storesUpperCaseIdentifiers(): Boolean = metadata.storesUpperCaseIdentifiers()
 
     /**
      * Stores lower case identifiers
      *
      * @return
      */
-    fun storesLowerCaseIdentifiers(): Boolean = metaData.storesLowerCaseIdentifiers()
+    fun storesLowerCaseIdentifiers(): Boolean = metadata.storesLowerCaseIdentifiers()
 
     /**
      * Stores mixed case identifiers
      *
      * @return
      */
-    fun storesMixedCaseIdentifiers(): Boolean = metaData.storesMixedCaseIdentifiers()
+    fun storesMixedCaseIdentifiers(): Boolean = metadata.storesMixedCaseIdentifiers()
 
     /**
      * Stores upper case quoted identifiers
      *
      * @return
      */
-    fun storesUpperCaseQuotedIdentifiers(): Boolean = metaData.storesUpperCaseQuotedIdentifiers()
+    fun storesUpperCaseQuotedIdentifiers(): Boolean = metadata.storesUpperCaseQuotedIdentifiers()
 
     /**
      * Stores lower case quoted identifiers
      *
      * @return
      */
-    fun storesLowerCaseQuotedIdentifiers(): Boolean = metaData.storesLowerCaseQuotedIdentifiers()
+    fun storesLowerCaseQuotedIdentifiers(): Boolean = metadata.storesLowerCaseQuotedIdentifiers()
 
     /**
      * Stores mixed case quoted identifiers
      *
      * @return
      */
-    fun storesMixedCaseQuotedIdentifiers(): Boolean = metaData.storesMixedCaseQuotedIdentifiers()
+    fun storesMixedCaseQuotedIdentifiers(): Boolean = metadata.storesMixedCaseQuotedIdentifiers()
 
     /**
      * Supports alter table with add column
      *
      * @return
      */
-    fun supportsAlterTableWithAddColumn(): Boolean = metaData.supportsAlterTableWithAddColumn()
+    fun supportsAlterTableWithAddColumn(): Boolean = metadata.supportsAlterTableWithAddColumn()
 
     /**
      * Supports alter table with drop column
      *
      * @return
      */
-    fun supportsAlterTableWithDropColumn(): Boolean = metaData.supportsAlterTableWithDropColumn()
+    fun supportsAlterTableWithDropColumn(): Boolean = metadata.supportsAlterTableWithDropColumn()
 
     /**
      * Supports a n s i92entry level s q l
      *
      * @return
      */
-    fun supportsANSI92EntryLevelSQL(): Boolean = metaData.supportsANSI92EntryLevelSQL()
+    fun supportsANSI92EntryLevelSQL(): Boolean = metadata.supportsANSI92EntryLevelSQL()
 
     /**
      * Supports a n s i92intermediate s q l
      *
      * @return
      */
-    fun supportsANSI92IntermediateSQL(): Boolean = metaData.supportsANSI92IntermediateSQL()
+    fun supportsANSI92IntermediateSQL(): Boolean = metadata.supportsANSI92IntermediateSQL()
 
     /**
      * Supports a n s i92full s q l
      *
      * @return
      */
-    fun supportsANSI92FullSQL(): Boolean = metaData.supportsANSI92FullSQL()
+    fun supportsANSI92FullSQL(): Boolean = metadata.supportsANSI92FullSQL()
 
     /**
      * Supports batch updates
      *
      * @return
      */
-    fun supportsBatchUpdates(): Boolean = metaData.supportsBatchUpdates()
+    fun supportsBatchUpdates(): Boolean = metadata.supportsBatchUpdates()
 
     /**
      * Supports catalogs in data manipulation
      *
      * @return
      */
-    fun supportsCatalogsInDataManipulation(): Boolean = metaData.supportsCatalogsInDataManipulation()
+    fun supportsCatalogsInDataManipulation(): Boolean = metadata.supportsCatalogsInDataManipulation()
 
     /**
      * Supports catalogs in procedure calls
      *
      * @return
      */
-    fun supportsCatalogsInProcedureCalls(): Boolean = metaData.supportsCatalogsInProcedureCalls()
+    fun supportsCatalogsInProcedureCalls(): Boolean = metadata.supportsCatalogsInProcedureCalls()
 
     /**
      * Supports catalogs in table definitions
      *
      * @return
      */
-    fun supportsCatalogsInTableDefinitions(): Boolean = metaData.supportsCatalogsInTableDefinitions()
+    fun supportsCatalogsInTableDefinitions(): Boolean = metadata.supportsCatalogsInTableDefinitions()
 
     /**
      * Supports catalogs in index definitions
      *
      * @return
      */
-    fun supportsCatalogsInIndexDefinitions(): Boolean = metaData.supportsCatalogsInIndexDefinitions()
+    fun supportsCatalogsInIndexDefinitions(): Boolean = metadata.supportsCatalogsInIndexDefinitions()
 
     /**
      * Supports catalogs in privilege definitions
      *
      * @return
      */
-    fun supportsCatalogsInPrivilegeDefinitions(): Boolean = metaData.supportsCatalogsInPrivilegeDefinitions()
+    fun supportsCatalogsInPrivilegeDefinitions(): Boolean = metadata.supportsCatalogsInPrivilegeDefinitions()
 
     /**
      * Supports column aliasing
      *
      * @return
      */
-    fun supportsColumnAliasing(): Boolean = metaData.supportsColumnAliasing()
+    fun supportsColumnAliasing(): Boolean = metadata.supportsColumnAliasing()
 
     /**
      * Supports convert
      *
      * @return
      */
-    fun supportsConvert(): Boolean = metaData.supportsConvert()
+    fun supportsConvert(): Boolean = metadata.supportsConvert()
 
     /**
      * Supports convert
@@ -935,21 +969,21 @@ class Database @JvmOverloads constructor(
      * @return
      */
     fun supportsConvert(fromType: JDBCType, toType: JDBCType): Boolean =
-        metaData.supportsConvert(fromType.vendorTypeNumber, toType.vendorTypeNumber)
+        metadata.supportsConvert(fromType.vendorTypeNumber, toType.vendorTypeNumber)
 
     /**
      * Supports correlated subqueries
      *
      * @return
      */
-    fun supportsCorrelatedSubqueries(): Boolean = metaData.supportsCorrelatedSubqueries()
+    fun supportsCorrelatedSubqueries(): Boolean = metadata.supportsCorrelatedSubqueries()
 
     /**
      * Supports core s q l grammar
      *
      * @return
      */
-    fun supportsCoreSQLGrammar(): Boolean = metaData.supportsCoreSQLGrammar()
+    fun supportsCoreSQLGrammar(): Boolean = metadata.supportsCoreSQLGrammar()
 
     /**
      * Supports data definition and data manipulation transactions
@@ -957,210 +991,210 @@ class Database @JvmOverloads constructor(
      * @return
      */
     fun supportsDataDefinitionAndDataManipulationTransactions(): Boolean =
-        metaData.supportsDataDefinitionAndDataManipulationTransactions()
+        metadata.supportsDataDefinitionAndDataManipulationTransactions()
 
     /**
      * Supports data manipulation transactions only
      *
      * @return
      */
-    fun supportsDataManipulationTransactionsOnly(): Boolean = metaData.supportsDataManipulationTransactionsOnly()
+    fun supportsDataManipulationTransactionsOnly(): Boolean = metadata.supportsDataManipulationTransactionsOnly()
 
     /**
      * Supports different table correlation names
      *
      * @return
      */
-    fun supportsDifferentTableCorrelationNames(): Boolean = metaData.supportsDifferentTableCorrelationNames()
+    fun supportsDifferentTableCorrelationNames(): Boolean = metadata.supportsDifferentTableCorrelationNames()
 
     /**
      * Supports extended s q l grammar
      *
      * @return
      */
-    fun supportsExtendedSQLGrammar(): Boolean = metaData.supportsExtendedSQLGrammar()
+    fun supportsExtendedSQLGrammar(): Boolean = metadata.supportsExtendedSQLGrammar()
 
     /**
      * Supports expressions in order by
      *
      * @return
      */
-    fun supportsExpressionsInOrderBy(): Boolean = metaData.supportsExpressionsInOrderBy()
+    fun supportsExpressionsInOrderBy(): Boolean = metadata.supportsExpressionsInOrderBy()
 
     /**
      * Supports full outer joins
      *
      * @return
      */
-    fun supportsFullOuterJoins(): Boolean = metaData.supportsFullOuterJoins()
+    fun supportsFullOuterJoins(): Boolean = metadata.supportsFullOuterJoins()
 
     /**
      * Supports get generated keys
      *
      * @return
      */
-    fun supportsGetGeneratedKeys(): Boolean = metaData.supportsGetGeneratedKeys()
+    fun supportsGetGeneratedKeys(): Boolean = metadata.supportsGetGeneratedKeys()
 
     /**
      * Supports group by
      *
      * @return
      */
-    fun supportsGroupBy(): Boolean = metaData.supportsGroupBy()
+    fun supportsGroupBy(): Boolean = metadata.supportsGroupBy()
 
     /**
      * Supports group by unrelated
      *
      * @return
      */
-    fun supportsGroupByUnrelated(): Boolean = metaData.supportsGroupByUnrelated()
+    fun supportsGroupByUnrelated(): Boolean = metadata.supportsGroupByUnrelated()
 
     /**
      * Supports group by beyond select
      *
      * @return
      */
-    fun supportsGroupByBeyondSelect(): Boolean = metaData.supportsGroupByBeyondSelect()
+    fun supportsGroupByBeyondSelect(): Boolean = metadata.supportsGroupByBeyondSelect()
 
     /**
      * Supports integrity enhancement facility
      *
      * @return
      */
-    fun supportsIntegrityEnhancementFacility(): Boolean = metaData.supportsIntegrityEnhancementFacility()
+    fun supportsIntegrityEnhancementFacility(): Boolean = metadata.supportsIntegrityEnhancementFacility()
 
     /**
      * Supports like escape clause
      *
      * @return
      */
-    fun supportsLikeEscapeClause(): Boolean = metaData.supportsLikeEscapeClause()
+    fun supportsLikeEscapeClause(): Boolean = metadata.supportsLikeEscapeClause()
 
     /**
      * Supports limited outer joins
      *
      * @return
      */
-    fun supportsLimitedOuterJoins(): Boolean = metaData.supportsLimitedOuterJoins()
+    fun supportsLimitedOuterJoins(): Boolean = metadata.supportsLimitedOuterJoins()
 
     /**
      * Supports minimum s q l grammar
      *
      * @return
      */
-    fun supportsMinimumSQLGrammar(): Boolean = metaData.supportsMinimumSQLGrammar()
+    fun supportsMinimumSQLGrammar(): Boolean = metadata.supportsMinimumSQLGrammar()
 
     /**
      * Supports mixed case identifiers
      *
      * @return
      */
-    fun supportsMixedCaseIdentifiers(): Boolean = metaData.supportsMixedCaseIdentifiers()
+    fun supportsMixedCaseIdentifiers(): Boolean = metadata.supportsMixedCaseIdentifiers()
 
     /**
      * Supports mixed case quoted identifiers
      *
      * @return
      */
-    fun supportsMixedCaseQuotedIdentifiers(): Boolean = metaData.supportsMixedCaseQuotedIdentifiers()
+    fun supportsMixedCaseQuotedIdentifiers(): Boolean = metadata.supportsMixedCaseQuotedIdentifiers()
 
     /**
      * Supports multiple result sets
      *
      * @return
      */
-    fun supportsMultipleResultSets(): Boolean = metaData.supportsMultipleResultSets()
+    fun supportsMultipleResultSets(): Boolean = metadata.supportsMultipleResultSets()
 
     /**
      * Supports multiple transactions
      *
      * @return
      */
-    fun supportsMultipleTransactions(): Boolean = metaData.supportsMultipleTransactions()
+    fun supportsMultipleTransactions(): Boolean = metadata.supportsMultipleTransactions()
 
     /**
      * Supports multiple open results
      *
      * @return
      */
-    fun supportsMultipleOpenResults(): Boolean = metaData.supportsMultipleOpenResults()
+    fun supportsMultipleOpenResults(): Boolean = metadata.supportsMultipleOpenResults()
 
     /**
      * Supports named parameters
      *
      * @return
      */
-    fun supportsNamedParameters(): Boolean = metaData.supportsNamedParameters()
+    fun supportsNamedParameters(): Boolean = metadata.supportsNamedParameters()
 
     /**
      * Supports non nullable columns
      *
      * @return
      */
-    fun supportsNonNullableColumns(): Boolean = metaData.supportsNonNullableColumns()
+    fun supportsNonNullableColumns(): Boolean = metadata.supportsNonNullableColumns()
 
     /**
      * Supports open cursors across commit
      *
      * @return
      */
-    fun supportsOpenCursorsAcrossCommit(): Boolean = metaData.supportsOpenCursorsAcrossCommit()
+    fun supportsOpenCursorsAcrossCommit(): Boolean = metadata.supportsOpenCursorsAcrossCommit()
 
     /**
      * Supports open cursors across rollback
      *
      * @return
      */
-    fun supportsOpenCursorsAcrossRollback(): Boolean = metaData.supportsOpenCursorsAcrossRollback()
+    fun supportsOpenCursorsAcrossRollback(): Boolean = metadata.supportsOpenCursorsAcrossRollback()
 
     /**
      * Supports open statements across commit
      *
      * @return
      */
-    fun supportsOpenStatementsAcrossCommit(): Boolean = metaData.supportsOpenStatementsAcrossCommit()
+    fun supportsOpenStatementsAcrossCommit(): Boolean = metadata.supportsOpenStatementsAcrossCommit()
 
     /**
      * Supports open statements across rollback
      *
      * @return
      */
-    fun supportsOpenStatementsAcrossRollback(): Boolean = metaData.supportsOpenStatementsAcrossRollback()
+    fun supportsOpenStatementsAcrossRollback(): Boolean = metadata.supportsOpenStatementsAcrossRollback()
 
     /**
      * Supports order by unrelated
      *
      * @return
      */
-    fun supportsOrderByUnrelated(): Boolean = metaData.supportsOrderByUnrelated()
+    fun supportsOrderByUnrelated(): Boolean = metadata.supportsOrderByUnrelated()
 
     /**
      * Supports outer joins
      *
      * @return
      */
-    fun supportsOuterJoins(): Boolean = metaData.supportsOuterJoins()
+    fun supportsOuterJoins(): Boolean = metadata.supportsOuterJoins()
 
     /**
      * Supports positioned delete
      *
      * @return
      */
-    fun supportsPositionedDelete(): Boolean = metaData.supportsPositionedDelete()
+    fun supportsPositionedDelete(): Boolean = metadata.supportsPositionedDelete()
 
     /**
      * Supports positioned update
      *
      * @return
      */
-    fun supportsPositionedUpdate(): Boolean = metaData.supportsPositionedUpdate()
+    fun supportsPositionedUpdate(): Boolean = metadata.supportsPositionedUpdate()
 
     /**
      * Supports ref cursors
      *
      * @return
      */
-    fun supportsRefCursors(): Boolean = metaData.supportsRefCursors()
+    fun supportsRefCursors(): Boolean = metadata.supportsRefCursors()
 
     /**
      * Supports result set concurrency
@@ -1171,7 +1205,7 @@ class Database @JvmOverloads constructor(
      */
     fun supportsResultSetConcurrency(
         resultSetType: ResultSetType, resultSetConcurrency: ResultSetConcurrency,
-    ): Boolean = metaData.supportsResultSetConcurrency(resultSetType.value, resultSetConcurrency.value)
+    ): Boolean = metadata.supportsResultSetConcurrency(resultSetType.value, resultSetConcurrency.value)
 
     /**
      * Supports result set holdability
@@ -1180,7 +1214,7 @@ class Database @JvmOverloads constructor(
      * @return
      */
     fun supportsResultSetHoldability(resultSetHoldability: ResultSetHoldability): Boolean =
-        metaData.supportsResultSetHoldability(resultSetHoldability.value)
+        metadata.supportsResultSetHoldability(resultSetHoldability.value)
 
     /**
      * Supports result set type
@@ -1189,126 +1223,126 @@ class Database @JvmOverloads constructor(
      * @return
      */
     fun supportsResultSetType(resultSetType: ResultSetType): Boolean =
-        metaData.supportsResultSetType(resultSetType.value)
+        metadata.supportsResultSetType(resultSetType.value)
 
     /**
      * Supports savepoints
      *
      * @return
      */
-    fun supportsSavepoints(): Boolean = metaData.supportsSavepoints()
+    fun supportsSavepoints(): Boolean = metadata.supportsSavepoints()
 
     /**
      * Supports sharding
      *
      * @return
      */
-    fun supportsSharding(): Boolean = metaData.supportsSharding()
+    fun supportsSharding(): Boolean = metadata.supportsSharding()
 
     /**
      * Supports statement pooling
      *
      * @return
      */
-    fun supportsStatementPooling(): Boolean = metaData.supportsStatementPooling()
+    fun supportsStatementPooling(): Boolean = metadata.supportsStatementPooling()
 
     /**
      * Supports stored functions using call syntax
      *
      * @return
      */
-    fun supportsStoredFunctionsUsingCallSyntax(): Boolean = metaData.supportsStoredFunctionsUsingCallSyntax()
+    fun supportsStoredFunctionsUsingCallSyntax(): Boolean = metadata.supportsStoredFunctionsUsingCallSyntax()
 
     /**
      * Supports schemas in data manipulation
      *
      * @return
      */
-    fun supportsSchemasInDataManipulation(): Boolean = metaData.supportsSchemasInDataManipulation()
+    fun supportsSchemasInDataManipulation(): Boolean = metadata.supportsSchemasInDataManipulation()
 
     /**
      * Supports schemas in procedure calls
      *
      * @return
      */
-    fun supportsSchemasInProcedureCalls(): Boolean = metaData.supportsSchemasInProcedureCalls()
+    fun supportsSchemasInProcedureCalls(): Boolean = metadata.supportsSchemasInProcedureCalls()
 
     /**
      * Supports schemas in table definitions
      *
      * @return
      */
-    fun supportsSchemasInTableDefinitions(): Boolean = metaData.supportsSchemasInTableDefinitions()
+    fun supportsSchemasInTableDefinitions(): Boolean = metadata.supportsSchemasInTableDefinitions()
 
     /**
      * Supports schemas in index definitions
      *
      * @return
      */
-    fun supportsSchemasInIndexDefinitions(): Boolean = metaData.supportsSchemasInIndexDefinitions()
+    fun supportsSchemasInIndexDefinitions(): Boolean = metadata.supportsSchemasInIndexDefinitions()
 
     /**
      * Supports schemas in privilege definitions
      *
      * @return
      */
-    fun supportsSchemasInPrivilegeDefinitions(): Boolean = metaData.supportsSchemasInPrivilegeDefinitions()
+    fun supportsSchemasInPrivilegeDefinitions(): Boolean = metadata.supportsSchemasInPrivilegeDefinitions()
 
     /**
      * Supports select for update
      *
      * @return
      */
-    fun supportsSelectForUpdate(): Boolean = metaData.supportsSelectForUpdate()
+    fun supportsSelectForUpdate(): Boolean = metadata.supportsSelectForUpdate()
 
     /**
      * Supports stored procedures
      *
      * @return
      */
-    fun supportsStoredProcedures(): Boolean = metaData.supportsStoredProcedures()
+    fun supportsStoredProcedures(): Boolean = metadata.supportsStoredProcedures()
 
     /**
      * Supports subqueries in comparisons
      *
      * @return
      */
-    fun supportsSubqueriesInComparisons(): Boolean = metaData.supportsSubqueriesInComparisons()
+    fun supportsSubqueriesInComparisons(): Boolean = metadata.supportsSubqueriesInComparisons()
 
     /**
      * Supports subqueries in exists
      *
      * @return
      */
-    fun supportsSubqueriesInExists(): Boolean = metaData.supportsSubqueriesInExists()
+    fun supportsSubqueriesInExists(): Boolean = metadata.supportsSubqueriesInExists()
 
     /**
      * Supports subqueries in ins
      *
      * @return
      */
-    fun supportsSubqueriesInIns(): Boolean = metaData.supportsSubqueriesInIns()
+    fun supportsSubqueriesInIns(): Boolean = metadata.supportsSubqueriesInIns()
 
     /**
      * Supports subqueries in quantifieds
      *
      * @return
      */
-    fun supportsSubqueriesInQuantifieds(): Boolean = metaData.supportsSubqueriesInQuantifieds()
+    fun supportsSubqueriesInQuantifieds(): Boolean = metadata.supportsSubqueriesInQuantifieds()
 
     /**
      * Supports table correlation names
      *
      * @return
      */
-    fun supportsTableCorrelationNames(): Boolean = metaData.supportsTableCorrelationNames()
+    fun supportsTableCorrelationNames(): Boolean = metadata.supportsTableCorrelationNames()
 
     /**
      * Supports transactions
      *
      * @return
      */
-    fun supportsTransactions(): Boolean = metaData.supportsTransactions()
+    fun supportsTransactions(): Boolean = metadata.supportsTransactions()
 
     /**
      * Supports transaction isolation level
@@ -1317,21 +1351,21 @@ class Database @JvmOverloads constructor(
      * @return
      */
     fun supportsTransactionIsolationLevel(transactionIsolation: TransactionIsolation): Boolean =
-        metaData.supportsTransactionIsolationLevel(transactionIsolation.value)
+        metadata.supportsTransactionIsolationLevel(transactionIsolation.value)
 
     /**
      * Supports union
      *
      * @return
      */
-    fun supportsUnion(): Boolean = metaData.supportsUnion()
+    fun supportsUnion(): Boolean = metadata.supportsUnion()
 
     /**
      * Supports union all
      *
      * @return
      */
-    fun supportsUnionAll(): Boolean = metaData.supportsUnionAll()
+    fun supportsUnionAll(): Boolean = metadata.supportsUnionAll()
 
     /**
      * Updates are detected
@@ -1339,19 +1373,19 @@ class Database @JvmOverloads constructor(
      * @param resultSetType
      * @return
      */
-    fun updatesAreDetected(resultSetType: ResultSetType): Boolean = metaData.updatesAreDetected(resultSetType.value)
+    fun updatesAreDetected(resultSetType: ResultSetType): Boolean = metadata.updatesAreDetected(resultSetType.value)
 
     /**
      * Uses local file per table
      *
      * @return
      */
-    fun usesLocalFilePerTable(): Boolean = metaData.usesLocalFilePerTable()
+    fun usesLocalFilePerTable(): Boolean = metadata.usesLocalFilePerTable()
 
     /**
      * Uses local files
      *
      * @return
      */
-    fun usesLocalFiles(): Boolean = metaData.usesLocalFiles()
+    fun usesLocalFiles(): Boolean = metadata.usesLocalFiles()
 }

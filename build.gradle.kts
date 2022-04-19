@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "dev.warrengates"
-version = "0.9"
+version = "0.9.1"
 
 repositories {
     mavenCentral()
@@ -25,11 +25,15 @@ dependencies {
 }
 
 tasks.dokkaHtml.configure {
-    outputDirectory.set(file("docs"))
+    outputDirectory.set(file("docs/kdoc"))
 }
 
 tasks.dokkaGfm.configure {
-    outputDirectory.set(file("docs"))
+    outputDirectory.set(file("docs/api"))
+}
+
+tasks.dokkaJavadoc.configure {
+    outputDirectory.set(file("docs/javadoc"))
 }
 
 tasks.getByName<Test>("test") {

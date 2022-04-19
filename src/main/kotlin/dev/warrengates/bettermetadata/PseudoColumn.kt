@@ -10,11 +10,8 @@ import java.sql.PseudoColumnUsage
 import java.sql.ResultSet
 
 /**
- * Pseudo column
+ * Wrapper for results of [getPseudoColumns](https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getPseudoColumns(java.lang.String,java.lang.String,java.lang.String,java.lang.String))
  *
- * @constructor
- *
- * @param rs
  */
 class PseudoColumn(rs: ResultSet) {
     /**
@@ -38,7 +35,7 @@ class PseudoColumn(rs: ResultSet) {
     val name: String? = rs.getString("COLUMN_NAME")
 
     /**
-     * SQL type from [java.sql.Types]
+     * SQL type, converted to [JDBCType]
      */
     val dataType: JDBCType = rs.getJDBCType("DATA_TYPE")
 
@@ -48,7 +45,7 @@ class PseudoColumn(rs: ResultSet) {
     val columnSize: Int = rs.getInt("COLUMN_SIZE")
 
     /**
-     * The number of fractional digits, null is returned when decimalDigits is not applicable
+     * The number of fractional digits
      */
     val decimalDigits: MetadataInt = rs.getMetadataInt("DECIMAL_DIGITS")
 
@@ -58,7 +55,7 @@ class PseudoColumn(rs: ResultSet) {
     val radix: Int = rs.getInt("NUM_PREC_RADIX")
 
     /**
-     * Column usage
+     * Column usage, converted to [PseudoColumnUsage]
      */
     val columnUsage: PseudoColumnUsage = PseudoColumnUsage.valueOf(rs.getString("COLUMN_USAGE"))
 
@@ -73,7 +70,7 @@ class PseudoColumn(rs: ResultSet) {
     val characterOctetLength: Int = rs.getInt("CHAR_OCTET_LENGTH")
 
     /**
-     * Is nullable
+     * Is nullable, converted to [IsNullable]
      */
     val isNullable: IsNullable = rs.getStringEnum("IS_NULLABLE")
 }

@@ -11,34 +11,33 @@ import java.sql.DatabaseMetaData
  * Index type
  *
  * @property value
- * @constructor Create empty Index type
  */
 enum class IndexType(override val value: Int): IntegerEnum {
     /**
      * Statistic
      *
-     * @constructor Create empty Statistic
+     * Source value: [DatabaseMetaData.tableIndexStatistic]
      */
     STATISTIC(DatabaseMetaData.tableIndexStatistic.toInt()),
 
     /**
      * Clustered
      *
-     * @constructor Create empty Clustered
+     * Source value: [DatabaseMetaData.tableIndexClustered]
      */
     CLUSTERED(DatabaseMetaData.tableIndexClustered.toInt()),
 
     /**
      * Hashed
      *
-     * @constructor Create empty Hashed
+     * Source value: [DatabaseMetaData.tableIndexHashed]
      */
     HASHED(DatabaseMetaData.tableIndexHashed.toInt()),
 
     /**
      * Other
      *
-     * @constructor Create empty Other
+     * Source value: [DatabaseMetaData.tableIndexOther]
      */
     OTHER(DatabaseMetaData.tableIndexOther.toInt());
 }

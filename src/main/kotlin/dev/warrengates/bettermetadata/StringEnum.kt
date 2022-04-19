@@ -5,6 +5,10 @@
 
 package dev.warrengates.bettermetadata
 
+/**
+ * String enum, convenience interface for converting string values to enums
+ *
+ */
 interface StringEnum {
     val value: String
 }

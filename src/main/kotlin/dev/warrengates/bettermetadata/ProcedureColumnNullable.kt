@@ -11,30 +11,26 @@ import java.sql.DatabaseMetaData
  * Procedure column nullable
  *
  * @property value
- * @property text
- * @constructor Create empty Procedure column nullable
  */
-enum class ProcedureColumnNullable(override val value: Int, private val text: String): IntegerEnum {
+enum class ProcedureColumnNullable(override val value: Int): IntegerEnum {
     /**
      * No
      *
-     * @constructor Create empty No
+     * Source value: [DatabaseMetaData.procedureNoNulls]
      */
-    NO(DatabaseMetaData.procedureNoNulls,"YES"),
+    NO(DatabaseMetaData.procedureNoNulls),
 
     /**
      * Yes
      *
-     * @constructor Create empty Yes
+     * Source value: [DatabaseMetaData.procedureNullable]
      */
-    YES(DatabaseMetaData.procedureNullable, "NO"),
+    YES(DatabaseMetaData.procedureNullable),
 
     /**
      * Unknown
      *
-     * @constructor Create empty Unknown
+     * Source value: [DatabaseMetaData.procedureNullableUnknown]
      */
-    UNKNOWN(DatabaseMetaData.procedureNullableUnknown, "");
-
-    override fun toString(): String = text
+    UNKNOWN(DatabaseMetaData.procedureNullableUnknown);
 }

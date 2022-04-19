@@ -11,27 +11,26 @@ import java.sql.DatabaseMetaData
  * Type nullable
  *
  * @property value
- * @constructor Create empty Type nullable
  */
 enum class TypeNullable(override val value: Int): IntegerEnum {
     /**
      * No
      *
-     * @constructor Create empty No
+     * Source value: [DatabaseMetaData.typeNoNulls]
      */
     NO(DatabaseMetaData.typeNoNulls),
 
     /**
      * Yes
      *
-     * @constructor Create empty Yes
+     * Source value: [DatabaseMetaData.typeNullable]
      */
     YES(DatabaseMetaData.typeNullable),
 
     /**
      * Unknown
      *
-     * @constructor Create empty Unknown
+     * Source value: [DatabaseMetaData.typeNullableUnknown]
      */
     UNKNOWN(DatabaseMetaData.typeNullableUnknown);
 }

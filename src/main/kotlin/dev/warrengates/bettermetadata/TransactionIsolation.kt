@@ -10,42 +10,40 @@ import java.sql.Connection
 /**
  * Transaction isolation
  *
- * @property value
- * @constructor Create empty Transaction isolation
  */
 enum class TransactionIsolation(override val value: Int): IntegerEnum {
     /**
      * None
      *
-     * @constructor Create empty None
-     */// defined in https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/Connection.html
+     * Source value: [Connection.TRANSACTION_NONE]
+     */
     NONE(Connection.TRANSACTION_NONE),
 
     /**
      * Read Committed
      *
-     * @constructor Create empty Read Committed
+     * Source value: [Connection.TRANSACTION_READ_COMMITTED]
      */
     READ_COMMITTED(Connection.TRANSACTION_READ_COMMITTED),
 
     /**
      * Read Uncommitted
      *
-     * @constructor Create empty Read Uncommitted
+     * Source value: [Connection.TRANSACTION_READ_UNCOMMITTED]
      */
     READ_UNCOMMITTED(Connection.TRANSACTION_READ_UNCOMMITTED),
 
     /**
      * Repeatable Read
      *
-     * @constructor Create empty Repeatable Read
+     * Source value: [Connection.TRANSACTION_REPEATABLE_READ]
      */
     REPEATABLE_READ(Connection.TRANSACTION_REPEATABLE_READ),
 
     /**
      * Serializable
      *
-     * @constructor Create empty Serializable
+     * Source value: [Connection.TRANSACTION_SERIALIZABLE]
      */
     SERIALIZABLE(Connection.TRANSACTION_SERIALIZABLE);
 }

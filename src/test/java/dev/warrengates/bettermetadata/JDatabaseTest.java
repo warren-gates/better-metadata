@@ -55,6 +55,7 @@ public class JDatabaseTest extends JDatabaseTestBase {
         );
     }
 
+    @SuppressWarnings("KotlinInternalInJava")
     private static <T extends Enum<T> & IntegerEnum> T valueOf(Class<T> enumType, int value) {
         for (T en : enumType.getEnumConstants()) {
             if (en.getValue() == value) {

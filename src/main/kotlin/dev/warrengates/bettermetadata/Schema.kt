@@ -8,21 +8,22 @@ package dev.warrengates.bettermetadata
 import java.sql.ResultSet
 
 /**
- * Schema
+ * Wrapper for results of [getSchemas](https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getSchemas())
  *
- * @constructor
- *
- * @param rs
  */
 @Suppress("unused")
 class Schema(rs: ResultSet) {
     /**
      * Name
+     *
+     * Source column: TABLE_SCHEM
      */
     val name: String = rs.getString("TABLE_SCHEM")
 
     /**
      * Catalog
+     *
+     * Source column: TABLE_CATALOG
      */
     val catalog: String? = rs.getString("TABLE_CATALOG")
 }

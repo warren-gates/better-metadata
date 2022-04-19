@@ -11,34 +11,33 @@ import java.sql.DatabaseMetaData
  * Type searchable
  *
  * @property value
- * @constructor Create empty Type searchable
  */
 enum class TypeSearchable(override val value: Int): IntegerEnum {
     /**
      * Basic
      *
-     * @constructor Create empty Basic
+     * Source value: [DatabaseMetaData.typePredBasic]
      */
     BASIC(DatabaseMetaData.typePredBasic),
 
     /**
      * Character
      *
-     * @constructor Create empty Character
-     */// TODO: is 'character' correct word?
-    CHARACTER(DatabaseMetaData.typePredChar),
+     * Source value: [DatabaseMetaData.typePredChar]
+     */
+    CHAR(DatabaseMetaData.typePredChar),
 
     /**
      * None
      *
-     * @constructor Create empty None
+     * Source value: [DatabaseMetaData.typePredNone]
      */
     NONE(DatabaseMetaData.typePredNone),
 
     /**
      * Searchable
      *
-     * @constructor Create empty Searchable
+     * Source value: [DatabaseMetaData.typeSearchable]
      */
     SEARCHABLE(DatabaseMetaData.typeSearchable);
 }
