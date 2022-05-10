@@ -1,6 +1,17 @@
 /*
- * Copyright (c) 2022. Warren Gates
- * All rights reserved.
+ * Copyright (c) 2022 Warren Gates
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package dev.warrengates.bettermetadata
@@ -18,7 +29,6 @@ import java.sql.ResultSet
  *
  * @param rs a [ResultSet] 
  */
-@Suppress("unused", "MemberVisibilityCanBePrivate")
 class Attribute(rs: ResultSet) {
 
     /**
@@ -26,6 +36,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: TYPE_CAT
      */
+    @get:SourceColumn("TYPE_CAT")
     val catalog: String? = rs.getString("TYPE_CAT")
 
     /**
@@ -33,6 +44,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: TYPE_SCHEM
      */
+    @get:SourceColumn("TYPE_SCHEM")
     val schema: String? = rs.getString("TYPE_SCHEM")
 
     /**
@@ -40,6 +52,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: TYPE_NAME
      */
+    @get:SourceColumn("TYPE_NAME")
     val typeName: String? = rs.getString("TYPE_NAME")
 
     /**
@@ -47,6 +60,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: ATTR_NAME
      */
+    @get:SourceColumn("ATTR_NAME")
     val name: String? = rs.getString("ATTR_NAME")
 
     /**
@@ -54,6 +68,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: DATA_TYPE
      */
+    @get:SourceColumn("DATA_TYPE")
     val dataType: JDBCType = rs.getJDBCType("DATA_TYPE")
 
     /**
@@ -61,6 +76,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: ATTR_TYPE_NAME
      */
+    @get:SourceColumn("ATTR_TYPE_NAME")
     val attributeTypeName: String? = rs.getString("ATTR_TYPE_NAME")
 
     /**
@@ -69,13 +85,15 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: ATTR_SIZE
      */
+    @get:SourceColumn("ATTR_SIZE")
     val attributeSize: Int = rs.getInt("ATTR_SIZE")
 
     /**
-     * The number of fractional digits. TODO: explain MetadataInt
+     * The number of fractional digits
      *
      * Source column: DECIMAL_DIGITS
      */
+    @get:SourceColumn("DECIMAL_DIGITS")
     val decimalDigits: MetadataInt = rs.getMetadataInt("DECIMAL_DIGITS")
 
     /**
@@ -83,6 +101,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: NUM_PREC_RADIX
      */
+    @get:SourceColumn("NUM_PREC_RADIX")
     val radix: MetadataInt = rs.getMetadataInt("NUM_PREC_RADIX")
 
     /**
@@ -90,6 +109,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: NULLABLE
      */
+    @get:SourceColumn("NULLABLE")
     val nullable: AttributeNullable = rs.getIntegerEnum("NULLABLE")
 
     /**
@@ -97,6 +117,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: REMARKS
      */
+    @get:SourceColumn("REMARKS")
     val remarks: String? = rs.getString("REMARKS")
 
     /**
@@ -104,6 +125,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: ATTR_DEF
      */
+    @get:SourceColumn("ATTR_DEF")
     val attributeDefault: String? = rs.getString("ATTR_DEF")
 
     /**
@@ -111,6 +133,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: CHAR_OCTET_LENGTH
      */
+    @get:SourceColumn("CHAR_OCTET_LENGTH")
     val characterOctetLength: MetadataInt = rs.getMetadataInt("CHAR_OCTET_LENGTH")
 
     /**
@@ -118,6 +141,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: ORDINAL_POSITION
      */
+    @get:SourceColumn("ORDINAL_POSITION")
     val ordinalPosition: Int = rs.getInt("ORDINAL_POSITION")
 
     /**
@@ -125,6 +149,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: IS_NULLABLE
      */
+    @get:SourceColumn("IS_NULLABLE")
     val isNullable: IsNullable = rs.getStringEnum("IS_NULLABLE")
 
     /**
@@ -132,6 +157,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: SCOPE_CATALOG
      */
+    @get:SourceColumn("SCOPE_CATALOG")
     val scopeCatalog: String? = rs.getString("SCOPE_CATALOG")
 
     /**
@@ -139,6 +165,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: SCOPE_SCHEMA
      */
+    @get:SourceColumn("SCOPE_SCHEMA")
     val scopeSchema: String? = rs.getString("SCOPE_SCHEMA")
 
     /**
@@ -146,6 +173,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: SCOPE_TABLE
      */
+    @get:SourceColumn("SCOPE_TABLE")
     val scopeTable: String? = rs.getString("SCOPE_TABLE")
 
     /**
@@ -154,6 +182,7 @@ class Attribute(rs: ResultSet) {
      *
      * Source column: SOURCE_DATA_TYPE
      */
+    @get:SourceColumn("SOURCE_DATA_TYPE")
     val sourceDataType: JDBCType = rs.getJDBCType("SOURCE_DATA_TYPE")
 
     override fun equals(other: Any?): Boolean {
@@ -166,6 +195,7 @@ class Attribute(rs: ResultSet) {
         if (schema != other.schema) return false
         if (typeName != other.typeName) return false
         if (name != other.name) return false
+        if (ordinalPosition != other.ordinalPosition) return false
 
         return true
     }
@@ -175,6 +205,7 @@ class Attribute(rs: ResultSet) {
         result = 31 * result + (schema?.hashCode() ?: 0)
         result = 31 * result + (typeName?.hashCode() ?: 0)
         result = 31 * result + (name?.hashCode() ?: 0)
+        result = 31 * result + ordinalPosition
         return result
     }
 }

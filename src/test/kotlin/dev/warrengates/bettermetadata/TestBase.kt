@@ -15,11 +15,6 @@ abstract class TestBase {
     protected lateinit var metadata: DatabaseMetaData
     protected lateinit var wrapper: Database
 
-    // TODO: look into using other databases for testing (mysql/mariadb, postgres, mssql,etc)
-    // use docker or testcontainers?
-    // see https://committed.io/posts/docker-java/docker-junit/
-    // see https://www.testcontainers.org/
-
     @BeforeAll
     fun setUp() {
         val driverName = "org.h2.Driver"
@@ -28,8 +23,9 @@ abstract class TestBase {
         val password = ""
 
         Class.forName(driverName)
+        DriverManager.getConnection(url, user, password)
         conn = DriverManager.getConnection(url, user, password)
-        RunScript.execute(conn, FileReader("src/test/resources/createTestTable.sql"))
+        RunScript.execute(conn, FileReader("src/test/resources/createH2db.sql"))
 
         metadata = conn.metaData
         wrapper = Database(metadata)

@@ -1,6 +1,17 @@
 /*
- * Copyright (c) 2022. Warren Gates
- * All rights reserved.
+ * Copyright (c) 2022 Warren Gates
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package dev.warrengates.bettermetadata
@@ -106,7 +117,7 @@ internal fun getKeys(metadata: DatabaseMetaData, rs: ResultSet, discriminator: K
  * @return
  */
 inline fun <reified T> valueOf(value: Int): T where T : Enum<T>, T : IntegerEnum {
-    return enumValues<T>().first { value == it.value }
+    return enumValues<T>().first { it.value == value }
 }
 
 
@@ -122,7 +133,7 @@ inline fun <reified T> valueOf(value: String): T where T : Enum<T>, T : StringEn
 }
 
 internal inline fun <reified T> ResultSet.getIntegerEnum(columnName: String): T where T : Enum<T>, T : IntegerEnum {
-    val type = this.getObject(columnName) as Int
+    val type = this.getInt(columnName)
     return valueOf(type)
 }
 
@@ -134,5 +145,15 @@ internal inline fun <reified T> ResultSet.getStringEnum(columnName: String): T w
 }
 
 internal fun ResultSet.getJDBCType(columnName: String): JDBCType {
-    return JDBCType.valueOf(this.getInt(columnName))
+    try {
+        val value = this.getObject(columnName)
+
+        if (this.wasNull()) {
+            return JDBCType.NULL
+        }
+        return JDBCType.valueOf(value.toString().toInt())
+    } catch (ex: Exception) {
+        println("no JDBCType for for column $columnName value '${this.getObject(columnName).toString()}'")
+        throw ex
+    }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <!-- NewPage -->
 <html lang="en"><head>
-    <title>Procedure 0.9.1 API </title>
+    <title>Procedure 1.0-SNAPSHOT API </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="dc.created" content="2020-03-25">
     <link rel="stylesheet" type="text/css" href="../../../stylesheet.css" title="Style">
@@ -117,7 +117,7 @@ var pathtoroot = "../../../";
 public final class <span class="typeNameLabel"><a href=Procedure.html>Procedure</a></span>
 
                     </pre>
-                    <div class="block"><p>Wrapper for results of <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getProcedures(java.lang.String,java.lang.String,java.lang.String)>getProcedures</a> method and represents a stored procedure</p></div>
+                    <div class="block"><p>Wrapper around the <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getProcedures(java.lang.String,java.lang.String,java.lang.String)>getProcedures</a> method and represents a stored procedure</p></div>
                 </li>
             </ul>
         </div>
@@ -343,6 +343,22 @@ public final class <span class="typeNameLabel"><a href=Procedure.html>Procedure<
                                             <td class="colLast">Wrapper around <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getProcedureColumns(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>getProcedureColumns</a> and returns a list of <a href=ProcedureColumn.html>ProcedureColumn</a>s for this procedure only</td>
                                         </tr>
                                         
+                                        <tr id="i8" class="altColor">
+                                            <td class="colFirst"><code><a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Procedure.html#equals(Object)>equals</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> other) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i9" class="rowColor">
+                                            <td class="colFirst"><code><a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Procedure.html#hashCode()>hashCode</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
                                         </tbody>
                                     </table>
                                 </div>
@@ -506,12 +522,42 @@ public final class <span class="typeNameLabel"><a href=Procedure.html>Procedure<
                                     <!--   -->
                                 </a>
                                 <ul class=
-                                              "blockListLast"
+                                              "blockList"
                                           >
                                     <li class="blockList">
                                         <h4>getProcedureColumns</h4>
                                         <pre class="methodSignature">@<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html>JvmOverloads</a>() final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=ProcedureColumn.html>ProcedureColumn</a>&gt; <a href=Procedure.html#getProcedureColumns(String)>getProcedureColumns</a>()</pre>
                                         <div class="block"><p>Wrapper around <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getProcedureColumns(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>getProcedureColumns</a> and returns a list of <a href=ProcedureColumn.html>ProcedureColumn</a>s for this procedure only</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="equals(Object)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>equals</h4>
+                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=Procedure.html#equals(Object)>equals</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> other)</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="hashCode()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>hashCode</h4>
+                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> <a href=Procedure.html#hashCode()>hashCode</a>()</pre>
+                                        <div class="block"></div>
                                         
                                         <!-- TODO missing return annotation -->
                                     </li>

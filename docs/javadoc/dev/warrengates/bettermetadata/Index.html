@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <!-- NewPage -->
 <html lang="en"><head>
-    <title>Index 0.9.1 API </title>
+    <title>Index 1.0-SNAPSHOT API </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="dc.created" content="2020-03-25">
     <link rel="stylesheet" type="text/css" href="../../../stylesheet.css" title="Style">
@@ -183,20 +183,20 @@ public final class <span class="typeNameLabel"><a href=Index.html>Index</a></spa
                                         </tr>
                                         
                                         <tr class="rowColor">
+                                            <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a></code></td>
+                                            <th class="colSecond" scope="row"><code><a href=Index.html#name>name</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code></td>
                                             <th class="colSecond" scope="row"><code><a href=Index.html#nonUnique>nonUnique</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr class="altColor">
-                                            <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a></code></td>
-                                            <th class="colSecond" scope="row"><code><a href=Index.html#indexQualifier>indexQualifier</a></code></th>
-                                            <td class="colLast"></td>
-                                        </tr>
-                                        
                                         <tr class="rowColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a></code></td>
-                                            <th class="colSecond" scope="row"><code><a href=Index.html#name>name</a></code></th>
+                                            <th class="colSecond" scope="row"><code><a href=Index.html#indexQualifier>indexQualifier</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
@@ -207,38 +207,26 @@ public final class <span class="typeNameLabel"><a href=Index.html>Index</a></spa
                                         </tr>
                                         
                                         <tr class="rowColor">
-                                            <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a></code></td>
-                                            <th class="colSecond" scope="row"><code><a href=Index.html#ordinalPosition>ordinalPosition</a></code></th>
-                                            <td class="colLast"></td>
-                                        </tr>
-                                        
-                                        <tr class="altColor">
-                                            <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a></code></td>
-                                            <th class="colSecond" scope="row"><code><a href=Index.html#columnName>columnName</a></code></th>
-                                            <td class="colLast"></td>
-                                        </tr>
-                                        
-                                        <tr class="rowColor">
-                                            <td class="colFirst"><code>private final <a href=IndexSort.html>IndexSort</a></code></td>
-                                            <th class="colSecond" scope="row"><code><a href=Index.html#sortSequence>sortSequence</a></code></th>
-                                            <td class="colLast"></td>
-                                        </tr>
-                                        
-                                        <tr class="altColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a></code></td>
                                             <th class="colSecond" scope="row"><code><a href=Index.html#cardinality>cardinality</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr class="rowColor">
+                                        <tr class="altColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a></code></td>
                                             <th class="colSecond" scope="row"><code><a href=Index.html#pages>pages</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr class="altColor">
+                                        <tr class="rowColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a></code></td>
                                             <th class="colSecond" scope="row"><code><a href=Index.html#filterCondition>filterCondition</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=IndexColumn.html>IndexColumn</a>&gt;</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=Index.html#indexColumns>indexColumns</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
@@ -268,7 +256,7 @@ public final class <span class="typeNameLabel"><a href=Index.html>Index</a></spa
                                         
                                             <tr class="altColor">
                                                 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
-                                                        href="#Index(ResultSet)">Index</a></span>(<a href=https://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html>ResultSet</a> rs)</code></th>
+                                                        href="#Index(Map)">Index</a></span>(<a href=https://docs.oracle.com/javase/8/docs/api/java/util/Map.html>Map</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt; values)</code></th>
                                                 <td class="colLast"></td>
                                             </tr>
                                         
@@ -346,6 +334,14 @@ public final class <span class="typeNameLabel"><a href=Index.html>Index</a></spa
                                         </tr>
                                         
                                         <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Index.html#getName()>getName</a>() </code>
+                                            </th>
+                                            <td class="colLast">Name, null when <a href=Index.html#type>type</a> is <a href=IndexType.html#STATISTIC>IndexType.STATISTIC</a>Source column: INDEX_NAME</td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=Index.html#getNonUnique()>getNonUnique</a>() </code>
@@ -353,20 +349,12 @@ public final class <span class="typeNameLabel"><a href=Index.html>Index</a></spa
                                             <td class="colLast">Non unique, false when <a href=Index.html#type>type</a> is <a href=IndexType.html#STATISTIC>IndexType.STATISTIC</a>Source column: NON_UNIQUE</td>
                                         </tr>
                                         
-                                        <tr id="i4" class="altColor">
+                                        <tr id="i5" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=Index.html#getIndexQualifier()>getIndexQualifier</a>() </code>
                                             </th>
                                             <td class="colLast">Index qualifier, null when <a href=Index.html#type>type</a> is <a href=IndexType.html#STATISTIC>IndexType.STATISTIC</a>Source column: INDEX_QUALIFIER</td>
-                                        </tr>
-                                        
-                                        <tr id="i5" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=Index.html#getName()>getName</a>() </code>
-                                            </th>
-                                            <td class="colLast">Name, null when <a href=Index.html#type>type</a> is <a href=IndexType.html#STATISTIC>IndexType.STATISTIC</a>Source column: INDEX_NAME</td>
                                         </tr>
                                         
                                         <tr id="i6" class="altColor">
@@ -378,30 +366,6 @@ public final class <span class="typeNameLabel"><a href=Index.html>Index</a></spa
                                         </tr>
                                         
                                         <tr id="i7" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=Index.html#getOrdinalPosition()>getOrdinalPosition</a>() </code>
-                                            </th>
-                                            <td class="colLast">Ordinal position, 0 when <a href=Index.html#type>type</a> is <a href=IndexType.html#STATISTIC>IndexType.STATISTIC</a>Source column: ORDINAL_POSITION</td>
-                                        </tr>
-                                        
-                                        <tr id="i8" class="altColor">
-                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=Index.html#getColumnName()>getColumnName</a>() </code>
-                                            </th>
-                                            <td class="colLast">Column name, null when <a href=Index.html#type>type</a> is <a href=IndexType.html#STATISTIC>IndexType.STATISTIC</a>Source column: COLUMN_NAME</td>
-                                        </tr>
-                                        
-                                        <tr id="i9" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=IndexSort.html>IndexSort</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=Index.html#getSortSequence()>getSortSequence</a>() </code>
-                                            </th>
-                                            <td class="colLast">Sort sequence, converted to <a href=IndexSort.html>IndexSort</a>Source column: ASC_OR_DESC</td>
-                                        </tr>
-                                        
-                                        <tr id="i10" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=Index.html#getCardinality()>getCardinality</a>() </code>
@@ -409,7 +373,7 @@ public final class <span class="typeNameLabel"><a href=Index.html>Index</a></spa
                                             <td class="colLast">Cardinality, when <a href=Index.html#type>type</a> is <a href=IndexType.html#STATISTIC>IndexType.STATISTIC</a> this is the number of rows in the table, otherwise it is the number of unique values in the indexSource column: CARDINALITY</td>
                                         </tr>
                                         
-                                        <tr id="i11" class="rowColor">
+                                        <tr id="i8" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=Index.html#getPages()>getPages</a>() </code>
@@ -417,12 +381,36 @@ public final class <span class="typeNameLabel"><a href=Index.html>Index</a></spa
                                             <td class="colLast">Pages, when <a href=Index.html#type>type</a> is <a href=IndexType.html#STATISTIC>IndexType.STATISTIC</a> this is then number pages used for the table, otherwise it is the number of pages used for the current indexSource column: PAGES</td>
                                         </tr>
                                         
-                                        <tr id="i12" class="altColor">
+                                        <tr id="i9" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=Index.html#getFilterCondition()>getFilterCondition</a>() </code>
                                             </th>
                                             <td class="colLast">Filter conditionSource column: FILTER_CONDITION</td>
+                                        </tr>
+                                        
+                                        <tr id="i10" class="altColor">
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=IndexColumn.html>IndexColumn</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Index.html#getIndexColumns()>getIndexColumns</a>() </code>
+                                            </th>
+                                            <td class="colLast">Index columns</td>
+                                        </tr>
+                                        
+                                        <tr id="i11" class="rowColor">
+                                            <td class="colFirst"><code><a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Index.html#equals(Object)>equals</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> other) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i12" class="altColor">
+                                            <td class="colFirst"><code><a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Index.html#hashCode()>hashCode</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
                                         </tr>
                                         
                                         </tbody>
@@ -456,11 +444,11 @@ public final class <span class="typeNameLabel"><a href=Index.html>Index</a></spa
                             </a>
                                 <h3>Constructor Detail</h3>
                                 
-                                <a name="Index(ResultSet)"></a>
+                                <a name="Index(Map)"></a>
                                 <ul class="blockList">
                                     <li class="blockList">
                                         <h4>Index</h4>
-                                        <pre>Index(<a href=https://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html>ResultSet</a> rs)</pre>
+                                        <pre>Index(<a href=https://docs.oracle.com/javase/8/docs/api/java/util/Map.html>Map</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt; values)</pre>
                                         <div class="block"></div>
                                         
                                     </li>
@@ -524,6 +512,21 @@ public final class <span class="typeNameLabel"><a href=Index.html>Index</a></spa
                                     </li>
                                 </ul>
                                 
+                                <a id="getName()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getName</h4>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=Index.html#getName()>getName</a>()</pre>
+                                        <div class="block"><p>Name, null when <a href=Index.html#type>type</a> is <a href=IndexType.html#STATISTIC>IndexType.STATISTIC</a></p><p>Source column: INDEX_NAME</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
                                 <a id="getNonUnique()">
                                     <!--   -->
                                 </a>
@@ -554,21 +557,6 @@ public final class <span class="typeNameLabel"><a href=Index.html>Index</a></spa
                                     </li>
                                 </ul>
                                 
-                                <a id="getName()">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>getName</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=Index.html#getName()>getName</a>()</pre>
-                                        <div class="block"><p>Name, null when <a href=Index.html#type>type</a> is <a href=IndexType.html#STATISTIC>IndexType.STATISTIC</a></p><p>Source column: INDEX_NAME</p></div>
-                                        
-                                        <!-- TODO missing return annotation -->
-                                    </li>
-                                </ul>
-                                
                                 <a id="getType()">
                                     <!--   -->
                                 </a>
@@ -579,51 +567,6 @@ public final class <span class="typeNameLabel"><a href=Index.html>Index</a></spa
                                         <h4>getType</h4>
                                         <pre class="methodSignature"> final <a href=IndexType.html>IndexType</a> <a href=Index.html#getType()>getType</a>()</pre>
                                         <div class="block"><p>Type</p><p>Source column: TYPE</p></div>
-                                        
-                                        <!-- TODO missing return annotation -->
-                                    </li>
-                                </ul>
-                                
-                                <a id="getOrdinalPosition()">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>getOrdinalPosition</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> <a href=Index.html#getOrdinalPosition()>getOrdinalPosition</a>()</pre>
-                                        <div class="block"><p>Ordinal position, 0 when <a href=Index.html#type>type</a> is <a href=IndexType.html#STATISTIC>IndexType.STATISTIC</a></p><p>Source column: ORDINAL_POSITION</p></div>
-                                        
-                                        <!-- TODO missing return annotation -->
-                                    </li>
-                                </ul>
-                                
-                                <a id="getColumnName()">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>getColumnName</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=Index.html#getColumnName()>getColumnName</a>()</pre>
-                                        <div class="block"><p>Column name, null when <a href=Index.html#type>type</a> is <a href=IndexType.html#STATISTIC>IndexType.STATISTIC</a></p><p>Source column: COLUMN_NAME</p></div>
-                                        
-                                        <!-- TODO missing return annotation -->
-                                    </li>
-                                </ul>
-                                
-                                <a id="getSortSequence()">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>getSortSequence</h4>
-                                        <pre class="methodSignature"> final <a href=IndexSort.html>IndexSort</a> <a href=Index.html#getSortSequence()>getSortSequence</a>()</pre>
-                                        <div class="block"><p>Sort sequence, converted to <a href=IndexSort.html>IndexSort</a></p><p>Source column: ASC_OR_DESC</p></div>
                                         
                                         <!-- TODO missing return annotation -->
                                     </li>
@@ -663,12 +606,57 @@ public final class <span class="typeNameLabel"><a href=Index.html>Index</a></spa
                                     <!--   -->
                                 </a>
                                 <ul class=
-                                              "blockListLast"
+                                              "blockList"
                                           >
                                     <li class="blockList">
                                         <h4>getFilterCondition</h4>
                                         <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=Index.html#getFilterCondition()>getFilterCondition</a>()</pre>
                                         <div class="block"><p>Filter condition</p><p>Source column: FILTER_CONDITION</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIndexColumns()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIndexColumns</h4>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=IndexColumn.html>IndexColumn</a>&gt; <a href=Index.html#getIndexColumns()>getIndexColumns</a>()</pre>
+                                        <div class="block"><p>Index columns</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="equals(Object)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>equals</h4>
+                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=Index.html#equals(Object)>equals</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> other)</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="hashCode()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>hashCode</h4>
+                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> <a href=Index.html#hashCode()>hashCode</a>()</pre>
+                                        <div class="block"></div>
                                         
                                         <!-- TODO missing return annotation -->
                                     </li>

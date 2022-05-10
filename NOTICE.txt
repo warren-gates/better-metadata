@@ -1,0 +1,5 @@
+Better Metadata
+Copyright 2022 Warren Gates
+
+This product includes software developed by
+Warren Gates (https://warrengates.dev/).

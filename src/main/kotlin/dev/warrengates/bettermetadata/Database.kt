@@ -1,6 +1,17 @@
 /*
- * Copyright (c) 2022. Warren Gates
- * All rights reserved.
+ * Copyright (c) 2022 Warren Gates
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package dev.warrengates.bettermetadata
@@ -221,6 +232,19 @@ class Database @JvmOverloads constructor(
     fun getExtraNameCharacters(): String = metadata.extraNameCharacters
 
     /**
+     * Gets functions using specified [namePattern] along with [defaultCatalog] and [defaultCatalog]
+     * to filter results.
+     *
+     * @param namePattern
+     * @return
+     */
+    @JvmOverloads
+    fun getFunctions(namePattern: String? = null): List<dev.warrengates.bettermetadata.Function> =
+        getIterableFromRs(
+            metadata, metadata.getFunctions(defaultCatalog, defaultSchema, namePattern)
+        ) { md, r -> Function(md, r) }
+
+    /**
      * Gets functions using the [catalog], [schemaPattern], and [namePattern]
      * to filter results. If not specified, [catalog] defaults to [defaultCatalog]
      * and [schemaPattern] defaults to [defaultSchema]
@@ -230,26 +254,12 @@ class Database @JvmOverloads constructor(
      * @param namePattern
      * @return List<[Function]>
      */
-    @JvmOverloads
     fun getFunctions(catalog: String? = defaultCatalog,
                      schemaPattern: String? = defaultSchema,
                      namePattern: String? = null): List<Function> {
         return getIterableFromRs(
             metadata, metadata.getFunctions(catalog, schemaPattern, namePattern)
         ) { md, r -> Function(md, r) }
-    }
-
-    /**
-     * Get functions
-     *
-     * @param schema
-     * @param namePattern
-     * @return
-     */
-    @JvmOverloads
-    fun getFunctions(schema: Schema,
-                     namePattern: String? = null): List<Function> {
-        return getFunctions(schema.catalog, schema.name, namePattern)
     }
 
     /**
@@ -428,6 +438,18 @@ class Database @JvmOverloads constructor(
     fun getNumericFunctions(): List<String> = metadata.numericFunctions.split(separator)
 
     /**
+     * Get procedures based on specified [namePattern] as well as [defaultCatalog] and [defaultSchema]
+     *
+     * @param namePattern
+     * @return
+     */
+    @JvmOverloads
+    fun getProcedures(namePattern: String? = null): List<Procedure> =
+        getIterableFromRs(
+            metadata, metadata.getProcedures(defaultCatalog, defaultSchema, namePattern)
+        ) { m, rs -> Procedure(m, rs) }
+
+    /**
      * Get procedures. If not specified, [catalog] defaults to [defaultCatalog]
      * and [schemaPattern] defaults to [defaultSchema]
      *
@@ -436,28 +458,11 @@ class Database @JvmOverloads constructor(
      * @param namePattern
      * @return
      */
-    @JvmOverloads
     fun getProcedures(catalog: String? = defaultCatalog,
                       schemaPattern: String? = defaultSchema,
-                      namePattern: String? = null): List<Procedure> {
-        return getIterableFromRs(
-            metadata, metadata.getProcedures(catalog, schemaPattern, namePattern)
-        ) { m, rs -> Procedure(m, rs) }
-    }
-
-
-    /**
-     * Get procedures
-     *
-     * @param schema
-     * @param namePattern
-     * @return
-     */
-    @JvmOverloads
-    fun getProcedures(schema: Schema,
-                    namePattern: String? = null): List<Procedure> {
-        return getProcedures(schema.catalog, schema.name, namePattern)
-    }
+                      namePattern: String? = null): List<Procedure> = getIterableFromRs(
+                          metadata, metadata.getProcedures(catalog, schemaPattern, namePattern)
+                      ) { m, rs -> Procedure(m, rs) }
 
     /**
      * Get procedure term
@@ -523,73 +528,24 @@ class Database @JvmOverloads constructor(
     fun getStringFunctions(): List<String> = metadata.stringFunctions.split(separator)
 
     /**
-     * Get super tables. If not specified, [catalog] defaults to [defaultCatalog]
-     * and [schemaPattern] defaults to [defaultSchema]
-     *
-     * @param catalog
-     * @param schemaPattern
-     * @param tableNamePattern
-     * @return
-     */
-    @JvmOverloads
-    fun getSuperTables(catalog: String? = defaultCatalog,
-                       schemaPattern: String? = defaultSchema,
-                       tableNamePattern: String? = null): List<Table> {
-        return getIterableFromRs(
-            metadata, metadata.getSuperTables(catalog, schemaPattern, tableNamePattern)
-        ) { m, rs -> Table(m, rs) }
-    }
-
-
-    /**
-     * Get super tables
-     *
-     * @param schema
-     * @param tableNamePattern
-     * @return
-     */
-    @JvmOverloads
-    fun getSuperTables(schema: Schema, tableNamePattern: String? = null): List<Table> {
-        return getSuperTables(schema.catalog, schema.name, tableNamePattern)
-    }
-
-    /**
-     * Get super types. If not specified, [catalog] defaults to [defaultCatalog]
-     * and [schemaPattern] defaults to [defaultSchema]
-     *
-     * @param catalog
-     * @param schemaPattern
-     * @param typeNamePattern
-     * @return
-     */
-    @JvmOverloads
-    fun getSuperTypes(catalog: String? = defaultCatalog,
-                      schemaPattern: String? = defaultSchema,
-                      typeNamePattern: String? = null): List<SuperType> {
-        return getIterableFromRs(
-            metadata.getSuperTypes(catalog, schemaPattern, typeNamePattern)
-        ) { SuperType(it) }
-    }
-
-
-    /**
-     * Get super types
-     *
-     * @param schema
-     * @param typeNamePattern
-     * @return
-     */
-    @JvmOverloads
-    fun getSuperTypes(schema: Schema,
-                      typeNamePattern: String? = null): List<SuperType> {
-        return getSuperTypes(schema.catalog, schema.name, typeNamePattern)
-    }
-    /**
      * Get system function names
      *
      * @return
      */
     fun getSystemFunctions(): List<String> = metadata.systemFunctions.split(separator)
+
+    /**
+     * Get tables with specified [tableNamePattern] and [types], as well as
+     * [defaultCatalog] and [defaultSchema]
+     *
+     * @param tableNamePattern
+     * @param types
+     */
+    @JvmOverloads
+    fun getTables(tableNamePattern: String? = null, types: Array<String>? = null): List<Table> =
+        getIterableFromRs(
+            metadata, metadata.getTables(defaultCatalog, defaultSchema, tableNamePattern, types)
+        ) { md, r -> Table(md, r) }
 
     /**
      * Get tables. If not specified, [catalog] defaults to [defaultCatalog]
@@ -601,35 +557,14 @@ class Database @JvmOverloads constructor(
      * @param types
      * @return
      */
-    @JvmOverloads
     fun getTables(
         catalog: String? = defaultCatalog,
         schemaPattern: String? = defaultSchema,
         tableNamePattern: String? = null,
         types: Array<String>? = null,
-    ): List<Table> {
-        return getIterableFromRs(
-            metadata, metadata.getTables(catalog, schemaPattern, tableNamePattern, types)
-        ) { md, r -> Table(md, r) }
-    }
-
-
-    /**
-     * Get tables
-     *
-     * @param schema
-     * @param tableNamePattern
-     * @param types
-     * @return
-     */
-    @JvmOverloads
-    fun getTables(
-        schema: Schema,
-        tableNamePattern: String? = null,
-        types: Array<String>? = null,
-    ): List<Table> {
-        return getTables(schema.catalog, schema.name, tableNamePattern, types)
-    }
+    ): List<Table> = getIterableFromRs(
+        metadata, metadata.getTables(catalog, schemaPattern, tableNamePattern, types)
+    ) { md, r -> Table(md, r) }
 
     /**
      * Get table types
@@ -667,6 +602,22 @@ class Database @JvmOverloads constructor(
     fun getURL(): String = metadata.url
 
     /**
+     * Get user defined types based on specified [namePattern] and [types]
+     * as well as [defaultCatalog] and [defaultSchema]
+     *
+     * @param namePattern
+     * @param types
+     * @return
+     */
+    @JvmOverloads
+    fun getUserDefinedTypes(namePattern: String? = null,
+                            types: Array<JDBCType>? = null): List<UserDefinedType> {
+        return getIterableFromRs(
+            metadata, metadata.getUDTs(defaultCatalog, defaultSchema, namePattern, types?.map { it.vendorTypeNumber }?.toIntArray())
+        ) { m, x -> UserDefinedType(m, x) }
+    }
+
+    /**
      * Get user defined types. If not specified, [catalog] defaults to [defaultCatalog]
      * and [schemaPattern] defaults to [defaultSchema]
      *
@@ -676,7 +627,6 @@ class Database @JvmOverloads constructor(
      * @param types
      * @return
      */
-    @JvmOverloads
     fun getUserDefinedTypes(
         catalog: String? = defaultCatalog,
         schemaPattern: String? = defaultSchema,
@@ -686,24 +636,6 @@ class Database @JvmOverloads constructor(
         return getIterableFromRs(
             metadata, metadata.getUDTs(catalog, schemaPattern, namePattern, types?.map { it.vendorTypeNumber }?.toIntArray())
         ) { m, x -> UserDefinedType(m, x) }
-    }
-
-
-    /**
-     * Get user defined types
-     *
-     * @param schema
-     * @param namePattern
-     * @param types
-     * @return
-     */
-    @JvmOverloads
-    fun getUserDefinedTypes(
-        schema: Schema,
-        namePattern: String? = null,
-        types: Array<JDBCType>? = null,
-    ): List<UserDefinedType> {
-        return getUserDefinedTypes(schema.catalog, schema.name, namePattern, types)
     }
 
     /**

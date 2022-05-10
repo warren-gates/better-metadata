@@ -1,2 +1,2 @@
-rootProject.name = "BetterMetadata"
+rootProject.name = "better-metadata"
 

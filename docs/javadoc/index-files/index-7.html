@@ -612,9 +612,9 @@ var pathtoroot = "../";
                 
                 <span class="memberNameLink">
                 
-                    <a href="../dev/warrengates/bettermetadata/PrimaryKeyColumn.html#getColumn()">getColumn()</a>
+                    <a href="../dev/warrengates/bettermetadata/IndexColumn.html#getColumn()">getColumn()</a>
                 
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/PrimaryKeyColumn.html>PrimaryKeyColumn</a>
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/IndexColumn.html>IndexColumn</a>
                 
 
             </dt>
@@ -677,19 +677,6 @@ var pathtoroot = "../";
                 
                 <span class="memberNameLink">
                 
-                    <a href="../dev/warrengates/bettermetadata/Index.html#getColumnName()">getColumnName()</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Index.html>Index</a>
-                
-
-            </dt>
-            <dd>Column name, null when <a href=../dev/warrengates/bettermetadata/Index.html#type>type</a> is <a href=../dev/warrengates/bettermetadata/IndexType.html#STATISTIC>IndexType.STATISTIC</a>Source column: COLUMN_NAME</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
                     <a href="../dev/warrengates/bettermetadata/VersionColumn.html#getColumnName()">getColumnName()</a>
                 
                 </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/VersionColumn.html>VersionColumn</a>
@@ -710,6 +697,19 @@ var pathtoroot = "../";
 
             </dt>
             <dd>Wrapper around <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getColumnPrivileges(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>getColumnPrivileges</a> method and represents a list of <a href=../dev/warrengates/bettermetadata/ColumnPrivilege.html>ColumnPrivilege</a>s for this column only</dd>
+
+        
+            <dt>
+                
+                <span class="memberNameLink">
+                
+                    <a href="../dev/warrengates/bettermetadata/PrimaryKey.html#getColumns()">getColumns()</a>
+                
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/PrimaryKey.html>PrimaryKey</a>
+                
+
+            </dt>
+            <dd>List of <a href=../dev/warrengates/bettermetadata/Column.html>Column</a> objects selected by filtering for the appropriate TABLE_CAT, TABLE_SCHEM, TABLE_NAME, and COLUMN_NAME as returned by <a href=https://docs.oracle.com/javase/8/docs/api/java/sql/DatabaseMetaData.html#getPrimaryKeys-kotlin.String-kotlin.String-kotlin.String->java.sql.DatabaseMetaData.getPrimaryKeys</a>, and the ordered by KEY_SEQ</dd>
 
         
             <dt>
@@ -1099,7 +1099,7 @@ var pathtoroot = "../";
                 
 
             </dt>
-            <dd>The number of fractional digits.</dd>
+            <dd>The number of fractional digitsSource column: DECIMAL_DIGITS</dd>
 
         
             <dt>
@@ -1418,6 +1418,32 @@ var pathtoroot = "../";
                 
                 <span class="memberNameLink">
                 
+                    <a href="../dev/warrengates/bettermetadata/Database.html#getFunctions(String)">getFunctions(String)</a>
+                
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
+                
+
+            </dt>
+            <dd>Gets functions using specified <a href=../dev/warrengates/bettermetadata/Database.html#getFunctions(String)>namePattern</a> along with <a href=../dev/warrengates/bettermetadata/Database.html#defaultCatalog>defaultCatalog</a> and <a href=../dev/warrengates/bettermetadata/Database.html#defaultCatalog>defaultCatalog</a> to filter results.</dd>
+
+        
+            <dt>
+                
+                <span class="memberNameLink">
+                
+                    <a href="../dev/warrengates/bettermetadata/Database.html#getFunctions(String)">getFunctions()</a>
+                
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
+                
+
+            </dt>
+            <dd>Gets functions using specified <a href=../dev/warrengates/bettermetadata/Database.html#getFunctions(String)>namePattern</a> along with <a href=../dev/warrengates/bettermetadata/Database.html#defaultCatalog>defaultCatalog</a> and <a href=../dev/warrengates/bettermetadata/Database.html#defaultCatalog>defaultCatalog</a> to filter results.</dd>
+
+        
+            <dt>
+                
+                <span class="memberNameLink">
+                
                     <a href="../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)">getFunctions(String,String,String)</a>
                 
                 </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
@@ -1425,71 +1451,6 @@ var pathtoroot = "../";
 
             </dt>
             <dd>Gets functions using the <a href=../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)>catalog</a>, <a href=../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)>schemaPattern</a>, and <a href=../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)>namePattern</a> to filter results.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)">getFunctions(String,String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Gets functions using the <a href=../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)>catalog</a>, <a href=../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)>schemaPattern</a>, and <a href=../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)>namePattern</a> to filter results.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)">getFunctions(String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Gets functions using the <a href=../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)>catalog</a>, <a href=../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)>schemaPattern</a>, and <a href=../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)>namePattern</a> to filter results.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)">getFunctions()</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Gets functions using the <a href=../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)>catalog</a>, <a href=../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)>schemaPattern</a>, and <a href=../dev/warrengates/bettermetadata/Database.html#getFunctions(String,String,String)>namePattern</a> to filter results.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getFunctions(Schema,String)">getFunctions(Schema,String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get functions</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getFunctions(Schema,String)">getFunctions(Schema)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get functions</dd>
 
         
             <dt>
@@ -1568,6 +1529,19 @@ var pathtoroot = "../";
 
             </dt>
             <dd>Get keys imported from other tablesSource: wrapped results of <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getImportedKeys(java.lang.String,java.lang.String,java.lang.String)>getImportedKeys</a> filtered to this table's catalog, schema, and name</dd>
+
+        
+            <dt>
+                
+                <span class="memberNameLink">
+                
+                    <a href="../dev/warrengates/bettermetadata/Index.html#getIndexColumns()">getIndexColumns()</a>
+                
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Index.html>Index</a>
+                
+
+            </dt>
+            <dd>Index columns</dd>
 
         
             <dt>
@@ -1997,6 +1971,19 @@ var pathtoroot = "../";
 
             </dt>
             <dd>Get max username length</dd>
+
+        
+            <dt>
+                
+                <span class="memberNameLink">
+                
+                    <a href="../dev/warrengates/bettermetadata/TypeDefinitionsKt.html#getMetadataInt(ResultSet,String)">getMetadataInt(ResultSet,String)</a>
+                
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/TypeDefinitionsKt.html>TypeDefinitionsKt</a>
+                
+
+            </dt>
+            <dd>&nbsp;</dd>
 
         
             <dt>
@@ -3056,19 +3043,6 @@ var pathtoroot = "../";
                 
                 <span class="memberNameLink">
                 
-                    <a href="../dev/warrengates/bettermetadata/Index.html#getOrdinalPosition()">getOrdinalPosition()</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Index.html>Index</a>
-                
-
-            </dt>
-            <dd>Ordinal position, 0 when <a href=../dev/warrengates/bettermetadata/Index.html#type>type</a> is <a href=../dev/warrengates/bettermetadata/IndexType.html#STATISTIC>IndexType.STATISTIC</a>Source column: ORDINAL_POSITION</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
                     <a href="../dev/warrengates/bettermetadata/ProcedureColumn.html#getOrdinalPosition()">getOrdinalPosition()</a>
                 
                 </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/ProcedureColumn.html>ProcedureColumn</a>
@@ -3134,6 +3108,19 @@ var pathtoroot = "../";
                 
                 <span class="memberNameLink">
                 
+                    <a href="../dev/warrengates/bettermetadata/Table.html#getPrimaryKey()">getPrimaryKey()</a>
+                
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Table.html>Table</a>
+                
+
+            </dt>
+            <dd>&nbsp;</dd>
+
+        
+            <dt>
+                
+                <span class="memberNameLink">
+                
                     <a href="../dev/warrengates/bettermetadata/KeyColumn.html#getPrimaryKeyColumn()">getPrimaryKeyColumn()</a>
                 
                 </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/KeyColumn.html>KeyColumn</a>
@@ -3147,19 +3134,6 @@ var pathtoroot = "../";
                 
                 <span class="memberNameLink">
                 
-                    <a href="../dev/warrengates/bettermetadata/PrimaryKey.html#getPrimaryKeyColumns()">getPrimaryKeyColumns()</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/PrimaryKey.html>PrimaryKey</a>
-                
-
-            </dt>
-            <dd>List of <a href=../dev/warrengates/bettermetadata/PrimaryKeyColumn.html>PrimaryKeyColumn</a> objects.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
                     <a href="../dev/warrengates/bettermetadata/Key.html#getPrimaryKeyName()">getPrimaryKeyName()</a>
                 
                 </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Key.html>Key</a>
@@ -3167,19 +3141,6 @@ var pathtoroot = "../";
 
             </dt>
             <dd>Primary key nameSource column: PK_NAME</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Table.html#getPrimaryKeys()">getPrimaryKeys()</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Table.html>Table</a>
-                
-
-            </dt>
-            <dd>Get primary keysSource: wrapped results of <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getPrimaryKeys(java.lang.String,java.lang.String,java.lang.String)>getPrimaryKeys</a> filtered to this table's catalog, schema, and name</dd>
 
         
             <dt>
@@ -3251,6 +3212,32 @@ var pathtoroot = "../";
                 
                 <span class="memberNameLink">
                 
+                    <a href="../dev/warrengates/bettermetadata/Database.html#getProcedures(String)">getProcedures(String)</a>
+                
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
+                
+
+            </dt>
+            <dd>Get procedures based on specified <a href=../dev/warrengates/bettermetadata/Database.html#getProcedures(String)>namePattern</a> as well as <a href=../dev/warrengates/bettermetadata/Database.html#defaultCatalog>defaultCatalog</a> and <a href=../dev/warrengates/bettermetadata/Database.html#defaultSchema>defaultSchema</a></dd>
+
+        
+            <dt>
+                
+                <span class="memberNameLink">
+                
+                    <a href="../dev/warrengates/bettermetadata/Database.html#getProcedures(String)">getProcedures()</a>
+                
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
+                
+
+            </dt>
+            <dd>Get procedures based on specified <a href=../dev/warrengates/bettermetadata/Database.html#getProcedures(String)>namePattern</a> as well as <a href=../dev/warrengates/bettermetadata/Database.html#defaultCatalog>defaultCatalog</a> and <a href=../dev/warrengates/bettermetadata/Database.html#defaultSchema>defaultSchema</a></dd>
+
+        
+            <dt>
+                
+                <span class="memberNameLink">
+                
                     <a href="../dev/warrengates/bettermetadata/Database.html#getProcedures(String,String,String)">getProcedures(String,String,String)</a>
                 
                 </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
@@ -3258,71 +3245,6 @@ var pathtoroot = "../";
 
             </dt>
             <dd>Get procedures.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getProcedures(String,String,String)">getProcedures(String,String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get procedures.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getProcedures(String,String,String)">getProcedures(String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get procedures.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getProcedures(String,String,String)">getProcedures()</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get procedures.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getProcedures(Schema,String)">getProcedures(Schema,String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get procedures</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getProcedures(Schema,String)">getProcedures(Schema)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get procedures</dd>
 
         
             <dt>
@@ -3609,6 +3531,19 @@ var pathtoroot = "../";
 
             </dt>
             <dd>Get result set holdability</dd>
+
+        
+            <dt>
+                
+                <span class="memberNameLink">
+                
+                    <a href="../dev/warrengates/bettermetadata/Function.html#getReturnType()">getReturnType()</a>
+                
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Function.html>Function</a>
+                
+
+            </dt>
+            <dd>Return type, converted to <a href=../dev/warrengates/bettermetadata/FunctionReturnType.html>FunctionReturnType</a>Source column: FUNCTION_TYPE</dd>
 
         
             <dt>
@@ -4005,26 +3940,13 @@ var pathtoroot = "../";
                 
                 <span class="memberNameLink">
                 
-                    <a href="../dev/warrengates/bettermetadata/PrimaryKeyColumn.html#getSequenceNumber()">getSequenceNumber()</a>
+                    <a href="../dev/warrengates/bettermetadata/IndexColumn.html#getSortSequence()">getSortSequence()</a>
                 
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/PrimaryKeyColumn.html>PrimaryKeyColumn</a>
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/IndexColumn.html>IndexColumn</a>
                 
 
             </dt>
             <dd>&nbsp;</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Index.html#getSortSequence()">getSortSequence()</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Index.html>Index</a>
-                
-
-            </dt>
-            <dd>Sort sequence, converted to <a href=../dev/warrengates/bettermetadata/IndexSort.html>IndexSort</a>Source column: ASC_OR_DESC</dd>
 
         
             <dt>
@@ -4050,7 +3972,7 @@ var pathtoroot = "../";
                 
 
             </dt>
-            <dd>Source data typeSource column: SOURCE_DATA_TYPE</dd>
+            <dd>Source data type of a distinct type or user-generated REF type, <a href=https://docs.oracle.com/javase/8/docs/api/java/sql/JDBCType.html#NULL>JDBCType.NULL</a> if <a href=../dev/warrengates/bettermetadata/Column.html#dataType>dataType</a> isn't <a href=https://docs.oracle.com/javase/8/docs/api/java/sql/JDBCType.html#DISTINCT>JDBCType.DISTINCT</a> or <a href=https://docs.oracle.com/javase/8/docs/api/java/sql/JDBCType.html#REF>JDBCType.REF</a>.</dd>
 
         
             <dt>
@@ -4148,78 +4070,13 @@ var pathtoroot = "../";
                 
                 <span class="memberNameLink">
                 
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getSuperTables(String,String,String)">getSuperTables(String,String,String)</a>
+                    <a href="../dev/warrengates/bettermetadata/Table.html#getSuperTables()">getSuperTables()</a>
                 
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get super tables.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getSuperTables(String,String,String)">getSuperTables(String,String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Table.html>Table</a>
                 
 
             </dt>
-            <dd>Get super tables.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getSuperTables(String,String,String)">getSuperTables(String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get super tables.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getSuperTables(String,String,String)">getSuperTables()</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get super tables.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getSuperTables(Schema,String)">getSuperTables(Schema,String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get super tables</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getSuperTables(Schema,String)">getSuperTables(Schema)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get super tables</dd>
+            <dd>Get super tables of this tableSource: wrapped result of <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getSuperTables(java.lang.String,java.lang.String,java.lang.String)>getSuperTables</a> filtered to this table's catalog, schema, and name</dd>
 
         
             <dt>
@@ -4252,78 +4109,13 @@ var pathtoroot = "../";
                 
                 <span class="memberNameLink">
                 
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getSuperTypes(String,String,String)">getSuperTypes(String,String,String)</a>
+                    <a href="../dev/warrengates/bettermetadata/UserDefinedType.html#getSuperTypes()">getSuperTypes()</a>
                 
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get super types.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getSuperTypes(String,String,String)">getSuperTypes(String,String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/UserDefinedType.html>UserDefinedType</a>
                 
 
             </dt>
-            <dd>Get super types.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getSuperTypes(String,String,String)">getSuperTypes(String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get super types.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getSuperTypes(String,String,String)">getSuperTypes()</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get super types.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getSuperTypes(Schema,String)">getSuperTypes(Schema,String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get super types</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getSuperTypes(Schema,String)">getSuperTypes(Schema)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get super types</dd>
+            <dd>Get super types for this typeSource: wrapped results of <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DatabaseMetaData.html#getSuperTypes(java.lang.String,java.lang.String,java.lang.String)>getSuperTypes</a> filtered to this type's catalog, schema, and name</dd>
 
         
             <dt>
@@ -4421,6 +4213,45 @@ var pathtoroot = "../";
                 
                 <span class="memberNameLink">
                 
+                    <a href="../dev/warrengates/bettermetadata/Database.html#getTables(String,Array)">getTables(String,Array)</a>
+                
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
+                
+
+            </dt>
+            <dd>Get tables with specified <a href=../dev/warrengates/bettermetadata/Database.html#getTables(String,Array)>tableNamePattern</a> and <a href=../dev/warrengates/bettermetadata/Database.html#getTables(String,Array)>types</a>, as well as <a href=../dev/warrengates/bettermetadata/Database.html#defaultCatalog>defaultCatalog</a> and <a href=../dev/warrengates/bettermetadata/Database.html#defaultSchema>defaultSchema</a></dd>
+
+        
+            <dt>
+                
+                <span class="memberNameLink">
+                
+                    <a href="../dev/warrengates/bettermetadata/Database.html#getTables(String,Array)">getTables(String)</a>
+                
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
+                
+
+            </dt>
+            <dd>Get tables with specified <a href=../dev/warrengates/bettermetadata/Database.html#getTables(String,Array)>tableNamePattern</a> and <a href=../dev/warrengates/bettermetadata/Database.html#getTables(String,Array)>types</a>, as well as <a href=../dev/warrengates/bettermetadata/Database.html#defaultCatalog>defaultCatalog</a> and <a href=../dev/warrengates/bettermetadata/Database.html#defaultSchema>defaultSchema</a></dd>
+
+        
+            <dt>
+                
+                <span class="memberNameLink">
+                
+                    <a href="../dev/warrengates/bettermetadata/Database.html#getTables(String,Array)">getTables()</a>
+                
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
+                
+
+            </dt>
+            <dd>Get tables with specified <a href=../dev/warrengates/bettermetadata/Database.html#getTables(String,Array)>tableNamePattern</a> and <a href=../dev/warrengates/bettermetadata/Database.html#getTables(String,Array)>types</a>, as well as <a href=../dev/warrengates/bettermetadata/Database.html#defaultCatalog>defaultCatalog</a> and <a href=../dev/warrengates/bettermetadata/Database.html#defaultSchema>defaultSchema</a></dd>
+
+        
+            <dt>
+                
+                <span class="memberNameLink">
+                
                     <a href="../dev/warrengates/bettermetadata/Database.html#getTables(String,String,String,Array)">getTables(String,String,String,Array)</a>
                 
                 </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
@@ -4428,97 +4259,6 @@ var pathtoroot = "../";
 
             </dt>
             <dd>Get tables.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getTables(String,String,String,Array)">getTables(String,String,String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get tables.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getTables(String,String,String,Array)">getTables(String,String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get tables.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getTables(String,String,String,Array)">getTables(String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get tables.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getTables(String,String,String,Array)">getTables()</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get tables.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getTables(Schema,String,Array)">getTables(Schema,String,Array)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get tables</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getTables(Schema,String,Array)">getTables(Schema,String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get tables</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getTables(Schema,String,Array)">getTables(Schema)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get tables</dd>
 
         
             <dt>
@@ -4545,19 +4285,6 @@ var pathtoroot = "../";
 
             </dt>
             <dd>Get time date function names</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Function.html#getType()">getType()</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Function.html>Function</a>
-                
-
-            </dt>
-            <dd>Return type, converted to <a href=../dev/warrengates/bettermetadata/FunctionReturnType.html>FunctionReturnType</a>Source column: FUNCTION_TYPE</dd>
 
         
             <dt>
@@ -4746,6 +4473,45 @@ var pathtoroot = "../";
                 
                 <span class="memberNameLink">
                 
+                    <a href="../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(String,Array)">getUserDefinedTypes(String,Array)</a>
+                
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
+                
+
+            </dt>
+            <dd>Get user defined types based on specified <a href=../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(String,Array)>namePattern</a> and <a href=../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(String,Array)>types</a> as well as <a href=../dev/warrengates/bettermetadata/Database.html#defaultCatalog>defaultCatalog</a> and <a href=../dev/warrengates/bettermetadata/Database.html#defaultSchema>defaultSchema</a></dd>
+
+        
+            <dt>
+                
+                <span class="memberNameLink">
+                
+                    <a href="../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(String,Array)">getUserDefinedTypes(String)</a>
+                
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
+                
+
+            </dt>
+            <dd>Get user defined types based on specified <a href=../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(String,Array)>namePattern</a> and <a href=../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(String,Array)>types</a> as well as <a href=../dev/warrengates/bettermetadata/Database.html#defaultCatalog>defaultCatalog</a> and <a href=../dev/warrengates/bettermetadata/Database.html#defaultSchema>defaultSchema</a></dd>
+
+        
+            <dt>
+                
+                <span class="memberNameLink">
+                
+                    <a href="../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(String,Array)">getUserDefinedTypes()</a>
+                
+                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
+                
+
+            </dt>
+            <dd>Get user defined types based on specified <a href=../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(String,Array)>namePattern</a> and <a href=../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(String,Array)>types</a> as well as <a href=../dev/warrengates/bettermetadata/Database.html#defaultCatalog>defaultCatalog</a> and <a href=../dev/warrengates/bettermetadata/Database.html#defaultSchema>defaultSchema</a></dd>
+
+        
+            <dt>
+                
+                <span class="memberNameLink">
+                
                     <a href="../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(String,String,String,Array)">getUserDefinedTypes(String,String,String,Array)</a>
                 
                 </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
@@ -4753,97 +4519,6 @@ var pathtoroot = "../";
 
             </dt>
             <dd>Get user defined types.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(String,String,String,Array)">getUserDefinedTypes(String,String,String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get user defined types.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(String,String,String,Array)">getUserDefinedTypes(String,String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get user defined types.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(String,String,String,Array)">getUserDefinedTypes(String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get user defined types.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(String,String,String,Array)">getUserDefinedTypes()</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get user defined types.</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(Schema,String,Array)">getUserDefinedTypes(Schema,String,Array)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get user defined types</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(Schema,String,Array)">getUserDefinedTypes(Schema,String)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get user defined types</dd>
-
-        
-            <dt>
-                
-                <span class="memberNameLink">
-                
-                    <a href="../dev/warrengates/bettermetadata/Database.html#getUserDefinedTypes(Schema,String,Array)">getUserDefinedTypes(Schema)</a>
-                
-                </span> - function in dev.warrengates.bettermetadata.<a href=../dev/warrengates/bettermetadata/Database.html>Database</a>
-                
-
-            </dt>
-            <dd>Get user defined types</dd>
 
         
             <dt>

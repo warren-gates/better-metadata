@@ -1,1 +1,1 @@
-var moduleSearchIndex = [{"l":"BetterMetadata","url":"index.html"}]
+var moduleSearchIndex = [{"l":"better-metadata","url":"index.html"}]

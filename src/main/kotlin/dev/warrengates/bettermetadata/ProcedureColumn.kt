@@ -1,6 +1,17 @@
 /*
- * Copyright (c) 2022. Warren Gates
- * All rights reserved.
+ * Copyright (c) 2022 Warren Gates
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package dev.warrengates.bettermetadata
@@ -24,6 +35,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: PROCEDURE_CAT
      */
+    @get:SourceColumn("PROCEDURE_CAT")
     val catalog: String? = rs.getString("PROCEDURE_CAT")
 
     /**
@@ -31,6 +43,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: PROCEDURE_SCHEM
      */
+    @get:SourceColumn("PROCEDURE_SCHEM")
     val schema: String? = rs.getString("PROCEDURE_SCHEM")
 
     /**
@@ -38,6 +51,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: PROCEDURE_NAME
      */
+    @get:SourceColumn("PROCEDURE_NAME")
     val procedureName: String? = rs.getString("PROCEDURE_NAME")
 
     /**
@@ -45,6 +59,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: COLUMN_NAME
      */
+    @get:SourceColumn("COLUMN_NAME")
     val name: String = rs.getString("COLUMN_NAME")
 
     /**
@@ -52,6 +67,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: COLUMN_TYPE
      */
+    @get:SourceColumn("COLUMN_TYPE")
     val columnType: ProcedureColumnType = rs.getIntegerEnum("COLUMN_TYPE")
 
     /**
@@ -59,6 +75,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: DATA_TYPE
      */
+    @get:SourceColumn("DATA_TYPE")
     val dataType: JDBCType = rs.getJDBCType("DATA_TYPE")
 
     /**
@@ -66,6 +83,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: TYPE_NAME
      */
+    @get:SourceColumn("TYPE_NAME")
     val typeName: String? = rs.getString("TYPE_NAME")
 
     /**
@@ -73,6 +91,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: PRECISION
      */
+    @get:SourceColumn("PRECISION")
     val precision: MetadataInt = rs.getMetadataInt("PRECISION")
 
     /**
@@ -80,6 +99,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: LENGTH
      */
+    @get:SourceColumn("LENGTH")
     val length: Int = rs.getInt("LENGTH")
 
     /**
@@ -87,6 +107,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: SCALE
      */
+    @get:SourceColumn("SCALE")
     val scale: MetadataInt = rs.getMetadataInt("SCALE")
 
     /**
@@ -94,6 +115,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: RADIX
      */
+    @get:SourceColumn("RADIX")
     val radix: MetadataInt = rs.getMetadataInt("RADIX")
 
     /**
@@ -101,6 +123,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: NULLABLE
      */
+    @get:SourceColumn("NULLABLE")
     val nullable: ProcedureColumnNullable = rs.getIntegerEnum("NULLABLE")
 
     /**
@@ -108,6 +131,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: REMARKS
      */
+    @get:SourceColumn("REMARKS")
     val remarks: String? = rs.getString("REMARKS")
 
     /**
@@ -115,6 +139,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: COLUMN_DEF
      */
+    @get:SourceColumn("COLUMN_DEF")
     val columnDefault: String? = rs.getString("COLUMN_DEF")
 
     /**
@@ -122,6 +147,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: CHAR_OCTET_LENGTH
      */
+    @get:SourceColumn("CHAR_OCTET_LENGTH")
     val characterOctetLength: MetadataInt = rs.getMetadataInt("CHAR_OCTET_LENGTH")
 
     /**
@@ -129,6 +155,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: ORDINAL_POSITION
      */
+    @get:SourceColumn("ORDINAL_POSITION")
     val ordinalPosition: Int = rs.getInt("ORDINAL_POSITION")
 
     /**
@@ -136,6 +163,7 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: IS_NULLABLE
      */
+    @get:SourceColumn("IS_NULLABLE")
     val isNullable: IsNullable = rs.getStringEnum("IS_NULLABLE")
 
     /**
@@ -143,5 +171,31 @@ class ProcedureColumn(rs: ResultSet) {
      *
      * Source column: SPECIFIC_NAME
      */
+    @get:SourceColumn("SPECIFIC_NAME")
     val specificName: String? = rs.getString("SPECIFIC_NAME")
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as ProcedureColumn
+
+        if (catalog != other.catalog) return false
+        if (schema != other.schema) return false
+        if (procedureName != other.procedureName) return false
+        if (name != other.name) return false
+        if (specificName != other.specificName) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = catalog?.hashCode() ?: 0
+        result = 31 * result + (schema?.hashCode() ?: 0)
+        result = 31 * result + (procedureName?.hashCode() ?: 0)
+        result = 31 * result + name.hashCode()
+        result = 31 * result + (specificName?.hashCode() ?: 0)
+        return result
+    }
+
+
 }
