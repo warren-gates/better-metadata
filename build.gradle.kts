@@ -9,21 +9,21 @@ plugins {
 }
 
 group = "dev.warrengates"
-version = "1.0-SNAPSHOT"
+version = "1.0"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
+    api(kotlin("stdlib"))
     dokkaGfmPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.6.21")
 
     testImplementation("org.jetbrains.kotlin:kotlin-reflect:1.6.21")
     testImplementation("com.h2database:h2:2.1.212")
 
     // https://mvnrepository.com/artifact/commons-dbutils/commons-dbutils
-    implementation("commons-dbutils:commons-dbutils:1.7")
+    testImplementation("commons-dbutils:commons-dbutils:1.7")
 
     val junitVersion = "5.8.2"
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
@@ -35,8 +35,7 @@ dependencies {
     testImplementation("org.testcontainers:junit-jupiter:$tcVersion")
 
     testImplementation("org.testcontainers:mysql:$tcVersion")
-    @Suppress("VulnerableLibrariesLocal")
-    testImplementation("mysql:mysql-connector-java:8.0.28")
+    @Suppress("VulnerableLibrariesLocal") testImplementation("mysql:mysql-connector-java:8.0.28")
 
     testImplementation("org.testcontainers:postgresql:$tcVersion")
     testImplementation("org.postgresql:postgresql:42.3.4")
@@ -49,12 +48,13 @@ tasks.dokkaHtml.configure {
     outputDirectory.set(file("docs/kdoc"))
 }
 
-tasks.dokkaGfm.configure {
-    outputDirectory.set(file("docs/api"))
+val javadocOutputDir = "docs/javadoc"
+tasks.dokkaJavadoc.configure {
+    outputDirectory.set(file(javadocOutputDir))
 }
 
-tasks.dokkaJavadoc.configure {
-    outputDirectory.set(file("docs/javadoc"))
+val deleteJavadocOutputDir by tasks.register<Delete>("deleteJavadocOutputDir") {
+    delete(javadocOutputDir)
 }
 
 tasks.getByName<Test>("test") {
@@ -68,14 +68,24 @@ tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
 }
 
+val uberJar = tasks.register<Jar>("uberJar") {
+    archiveClassifier.set("uber")
 
+    from(sourceSets.main.get().output)
 
-tasks.create("javadocJar", Jar::class.java) {
-    archiveClassifier.set("javadoc")
-    from(tasks.dokkaJavadoc)
+    dependsOn(configurations.runtimeClasspath)
+    from({
+        configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
+    })
 }
 
-tasks.create("sourcesJar", Jar::class.java) {
+val javadocJar = tasks.register("javadocJar", Jar::class.java) {
+    dependsOn(deleteJavadocOutputDir, tasks.dokkaJavadoc)
+    archiveClassifier.set("javadoc")
+    from(javadocOutputDir)
+}
+
+val sourcesJar = tasks.register("sourcesJar", Jar::class.java) {
     archiveClassifier.set("sources")
     from(sourceSets.main.get().allSource)
 }
@@ -83,6 +93,33 @@ tasks.create("sourcesJar", Jar::class.java) {
 publishing {
     publications {
         create<MavenPublication>("better-metadata") {
+            artifactId = "better-metadata"
+
+            from(project.components["kotlin"])
+            artifact(javadocJar)
+            artifact(sourcesJar)
+            repositories {
+                maven {
+                    name = "ossrh"
+                    setUrl {
+                        "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                    }
+                    credentials {
+                        username = project.property("sonatype.username").toString()
+                        password = project.property("sonatype.password").toString()
+                    }
+                }
+                maven {
+                    name = "snapshot"
+                    setUrl {
+                        "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+                    }
+                    credentials {
+                        username = project.property("sonatype.username").toString()
+                        password = project.property("sonatype.password").toString()
+                    }
+                }
+            }
             pom {
                 name.set("Better Metadata")
                 description.set("A object oriented wrapper around java.sql.DatabaseMetaData")
@@ -92,6 +129,10 @@ publishing {
                         name.set("The Apache License, Version 2.0")
                         url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
                     }
+                }
+                issueManagement {
+                    system.set("Github")
+                    url.set("https://github.com/warren-gates/better-metadata/issues")
                 }
                 developers {
                     developer {
@@ -108,6 +149,10 @@ publishing {
             }
         }
     }
+}
+
+signing {
+    sign(publishing.publications)
 }
 
 //

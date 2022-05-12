@@ -28,7 +28,6 @@ import java.sql.ResultSet
  * If you'd rather get 0 values instead of nulls, comment out the code immediately below and use the
  * 'Non-nullable int' code at the bottom
  *
- * Note that at this point not all possible values are using this type alias
  *
  */
 //typealias MetadataInt = Int?
