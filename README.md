@@ -1,6 +1,11 @@
 # better-metadata
-Provides wrapper classes and enums for Java's DatabaseMetadata class. Currently feature complete,
-though not fully tested, and therefore not ready for production use.
+Provides wrapper classes and enums for Java's DatabaseMetadata class. Does not provide any additional error handling, so
+if a particular call to DatabaseMetadata throws an exception, the equivalent call here will too. Additionally,
+some jdbc drivers are not consistent in the data they return. As an example, the PostgreSQL driver will
+return tables under its 'pg_toast' schema, but won't return the columns for those tables.
+
+## Dependencies
+Requires the Kotlin [stdlib](https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib/1.6.21)
 
 ## Usage
 Java

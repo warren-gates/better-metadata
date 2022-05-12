@@ -154,12 +154,3 @@ publishing {
 signing {
     sign(publishing.publications)
 }
-
-//
-//artifacts {
-//    archives("javadocJar, sourcesJar")
-//}
-//
-//signing {
-//    sign(configurations.archives.get())
-//}
