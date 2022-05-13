@@ -9,14 +9,14 @@ plugins {
 }
 
 group = "dev.warrengates"
-version = "1.0.1"
+version = "1.0.2"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    api(kotlin("stdlib"))
+    implementation(kotlin("stdlib"))
     dokkaGfmPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.6.21")
 
     testImplementation("org.jetbrains.kotlin:kotlin-reflect:1.6.21")
