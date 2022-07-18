@@ -239,7 +239,7 @@ class Database @JvmOverloads constructor(
      * @return
      */
     @JvmOverloads
-    fun getFunctions(namePattern: String? = null): List<dev.warrengates.bettermetadata.Function> =
+    fun getFunctions(namePattern: String? = null): List<Function> =
         getIterableFromRs(
             metadata, metadata.getFunctions(defaultCatalog, defaultSchema, namePattern)
         ) { md, r -> Function(md, r) }
