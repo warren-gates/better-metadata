@@ -1,6 +1,5 @@
 # better-metadata
-Provides wrapper classes and enums for Java's DatabaseMetadata class. Currently feature complete,
-though not fully tested, and therefore not ready for production use.
+Provides wrapper classes and enums for Java's DatabaseMetadata class.
 
 ## Usage
 Java
